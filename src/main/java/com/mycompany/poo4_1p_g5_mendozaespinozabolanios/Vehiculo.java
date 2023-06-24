@@ -23,6 +23,54 @@ public class Vehiculo {
     private String chasis;
     private String color;
 
+    public int getDueño() {
+        return dueño;
+    }
+
+    public void setDueño(int dueño) {
+        this.dueño = dueño;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    public String getChasis() {
+        return chasis;
+    }
+
+    public void setChasis(String chasis) {
+        this.chasis = chasis;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     public class ManejoArchivos {
 
         public static ArrayList<String> LeeFichero(String nombrearchivo) {
@@ -32,13 +80,10 @@ public class Vehiculo {
             BufferedReader br = null;
 
             try {
-                // Apertura del fichero y creacion de BufferedReader para poder
-                // hacer una lectura comoda (disponer del metodo readLine()).
                 archivo = new File(nombrearchivo);
                 fr = new FileReader(archivo, StandardCharsets.UTF_8);
                 br = new BufferedReader(fr);
 
-                // Lectura del fichero
                 String linea;
                 while ((linea = br.readLine()) != null) {
                     System.out.println(linea);
@@ -49,9 +94,7 @@ public class Vehiculo {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                // En el finally cerramos el fichero, para asegurarnos
-                // que se cierra tanto si todo va bien como si salta 
-                // una excepcion.
+
                 try {
                     if (null != fr) {
                         fr.close();

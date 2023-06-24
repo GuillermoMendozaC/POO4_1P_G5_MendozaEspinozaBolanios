@@ -15,6 +15,7 @@ public class POO4_1P_G5_MendozaEspinozaBolanios {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        ArrayList<String> datos=ManejoArchivos.LeeFichero("jugadores.txt");
+        ArrayList<String> datos=ManejoArchivos.LeeFichero("vehiculos.txt");
+        System.out.println("-------------------------"+datos[1]);
         }
 }

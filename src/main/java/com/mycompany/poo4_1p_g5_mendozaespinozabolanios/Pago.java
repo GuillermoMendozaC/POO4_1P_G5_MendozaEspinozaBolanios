@@ -15,6 +15,54 @@ public class Pago {
     private TipoPago  metodopago;
     private Double valorfinalp;
     private String razonpago;
+
+    public int getCodigopago() {
+        return codigopago;
+    }
+
+    public void setCodigopago(int codigopago) {
+        this.codigopago = codigopago;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Double getValorpagar() {
+        return valorpagar;
+    }
+
+    public void setValorpagar(Double valorpagar) {
+        this.valorpagar = valorpagar;
+    }
+
+    public TipoPago getMetodopago() {
+        return metodopago;
+    }
+
+    public void setMetodopago(TipoPago metodopago) {
+        this.metodopago = metodopago;
+    }
+
+    public Double getValorfinalp() {
+        return valorfinalp;
+    }
+
+    public void setValorfinalp(Double valorfinalp) {
+        this.valorfinalp = valorfinalp;
+    }
+
+    public String getRazonpago() {
+        return razonpago;
+    }
+
+    public void setRazonpago(String razonpago) {
+        this.razonpago = razonpago;
+    }
     
     
     
