@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Lenovo
  */
-public abstract class Usuario {
+public abstract class Usuario extends Main1{
     private int cedula;
     private String nombre;
     private String apellidos;
@@ -19,27 +19,43 @@ public abstract class Usuario {
     private String contrasenia;
     private TipoUsuario perfil;
     
-    public String ConsultarMultas(int cedula, Vehiculo vehiculo, ArrayList<Multa> listamultas){
-        String multa=null;
-        if (cedula!=0){ /*si es distinto de 0 significa que tenemos la cedula y 
-                            podemos usarla para encontrar las multas*/
-            for (int i=0;i<listamultas.size();i++){
-                if (cedula==listamultas.get(0).){
-                
-                }
-            }
-        }
-        else{
-            for (int i=0;i<listamultas.length;i++){
-                for (int j=0;j<listamultas[i].lenght;i++){
-                    if (listamultas[i][1].equals(vehiculo.getPlaca())){
-                    multa= listamultas[i][2];
-                    }
-                }
-            }
+    
+    
+    
+//    METODO CONSULTAR MULTAS ANTIGUO
+    
+//    public String ConsultarMultas(int cedula, Vehiculo vehiculo, ArrayList<Multa> listamultas){
+//        String multa=null;
+//        if (cedula!=0){ /*si es distinto de 0 significa que tenemos la cedula y 
+//                            podemos usarla para encontrar las multas*/
+//            for (int i=0;i<listamultas.size();i++){
+//                if (cedula==listamultas.get(0).){
+//                
+//                }
+//            }
+//        }
+//        else{
+//            for (int i=0;i<listamultas.length;i++){
+//                for (int j=0;j<listamultas[i].lenght;i++){
+//                    if (listamultas[i][1].equals(vehiculo.getPlaca())){
+//                    multa= listamultas[i][2];
+//                    }
+//                }
+//            }
+//        
+//        }
+//        return multa;
+//    }
+    
+    
+// METODO CONSULTAR MULTAS PRUEBA 
+    
+    public void consultarmultas(){
         
-        }
-        return multa;
     }
+
+
+
+    
 }
 

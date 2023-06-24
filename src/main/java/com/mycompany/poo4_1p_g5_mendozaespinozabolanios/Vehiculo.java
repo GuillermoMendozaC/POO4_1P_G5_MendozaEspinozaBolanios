@@ -71,42 +71,42 @@ public class Vehiculo {
         this.color = color;
     }
 
-    public class ManejoArchivos {
-
-        public static ArrayList<String> LeeFichero(String nombrearchivo) {
-            ArrayList<String> lineas = new ArrayList<>();
-            File archivo = null;
-            FileReader fr = null;
-            BufferedReader br = null;
-
-            try {
-                archivo = new File(nombrearchivo);
-                fr = new FileReader(archivo, StandardCharsets.UTF_8);
-                br = new BufferedReader(fr);
-
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    System.out.println(linea);
-                    lineas.add(linea);
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-
-                try {
-                    if (null != fr) {
-                        fr.close();
-                    }
-                } catch (Exception e2) {
-                    e2.printStackTrace();
-                }
-            }
-            return lineas;
-
-        }
+//    public class ManejoArchivos {
+//
+//        public static ArrayList<String> LeeFichero(String nombrearchivo) {
+//            ArrayList<String> lineas = new ArrayList<>();
+//            File archivo = null;
+//            FileReader fr = null;
+//            BufferedReader br = null;
+//
+//            try {
+//                archivo = new File(nombrearchivo);
+//                fr = new FileReader(archivo, StandardCharsets.UTF_8);
+//                br = new BufferedReader(fr);
+//
+//                String linea;
+//                while ((linea = br.readLine()) != null) {
+//                    System.out.println(linea);
+//                    lineas.add(linea);
+//
+//                }
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            } finally {
+//
+//                try {
+//                    if (null != fr) {
+//                        fr.close();
+//                    }
+//                } catch (Exception e2) {
+//                    e2.printStackTrace();
+//                }
+//            }
+//            return lineas;
+//
+//        }
 
     }
 
-}
+
