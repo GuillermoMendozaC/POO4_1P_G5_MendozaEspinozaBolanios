@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class Multa {
     private Cliente cliente;
@@ -12,6 +17,29 @@ public class Multa {
     private String fechaInfraccion;
     private String fechaNotificacion;
     private int puntos;
+
+    
+    public  Multa(Cliente cliente, Vehiculo vehiculo, String infraccion,int valorMulta,
+    String fechaInfraccion, String fechaNotificacion,int puntos){
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        this.infraccion = infraccion;
+        this.valorMulta = valorMulta;
+        this.fechaInfraccion = fechaInfraccion;
+        this.fechaNotificacion = fechaNotificacion;
+        this.puntos = puntos;
+    }
+    public  Multa(int duenio,String plak,String infraccion,int valorMulta,
+    String fechaInfraccion, String fechaNotificacion,int puntos){
+        int cedula=duenio;
+        String placa = plak;
+        this.infraccion = infraccion;
+        this.valorMulta = valorMulta;
+        this.fechaInfraccion = fechaInfraccion;
+        this.fechaNotificacion = fechaNotificacion;
+        this.puntos = puntos;
+        
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -68,4 +96,5 @@ public class Multa {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+    
 }
