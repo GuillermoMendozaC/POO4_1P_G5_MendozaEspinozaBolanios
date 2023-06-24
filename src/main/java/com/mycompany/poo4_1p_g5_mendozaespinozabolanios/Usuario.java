@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Lenovo
  */
-public class Usuario {
+public abstract class Usuario {
     private int cedula;
     private String nombre;
     private String apellidos;
@@ -18,14 +19,13 @@ public class Usuario {
     private String contrasenia;
     private TipoUsuario perfil;
     
-    public String ConsultarMultas(int cedula, Vehiculo vehiculo, ArrayList<Multas> listamultas){
+    public String ConsultarMultas(int cedula, Vehiculo vehiculo, ArrayList<Multa> listamultas){
         String multa=null;
-        if (cedula!=0){
-            for (int i=0;i<listamultas.length;i++){
-                for (int j=0;j<listamultas[i].lenght;i++){
-                    if (listamultas[i][0]==cedula){
-                    multa= listamultas[i][2];
-                    }
+        if (cedula!=0){ /*si es distinto de 0 significa que tenemos la cedula y 
+                            podemos usarla para encontrar las multas*/
+            for (int i=0;i<listamultas.size();i++){
+                if (cedula==listamultas.get(0).){
+                
                 }
             }
         }

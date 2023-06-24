@@ -5,6 +5,8 @@
 
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Lenovo
@@ -13,5 +15,6 @@ public class POO4_1P_G5_MendozaEspinozaBolanios {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        ArrayList<String> datos=ManejoArchivos.LeeFichero("jugadores.txt");
         }
 }

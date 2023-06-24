@@ -3,6 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
+<<<<<<< HEAD
+=======
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+>>>>>>> 378daa91dd8e707c40be77ce95590569e3e28640
 
 public class Multa {
     private Cliente cliente;
@@ -13,6 +21,32 @@ public class Multa {
     private String fechaNotificacion;
     private int puntos;
 
+<<<<<<< HEAD
+=======
+    
+    public  Multa(Cliente cliente, Vehiculo vehiculo, String infraccion,int valorMulta,
+    String fechaInfraccion, String fechaNotificacion,int puntos){
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        this.infraccion = infraccion;
+        this.valorMulta = valorMulta;
+        this.fechaInfraccion = fechaInfraccion;
+        this.fechaNotificacion = fechaNotificacion;
+        this.puntos = puntos;
+    }
+    public  Multa(int duenio,String plak,String infraccion,int valorMulta,
+    String fechaInfraccion, String fechaNotificacion,int puntos){
+        int cedula=duenio;
+        String placa = plak;
+        this.infraccion = infraccion;
+        this.valorMulta = valorMulta;
+        this.fechaInfraccion = fechaInfraccion;
+        this.fechaNotificacion = fechaNotificacion;
+        this.puntos = puntos;
+        
+    }
+
+>>>>>>> 378daa91dd8e707c40be77ce95590569e3e28640
     public Cliente getCliente() {
         return cliente;
     }
@@ -68,4 +102,8 @@ public class Multa {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 378daa91dd8e707c40be77ce95590569e3e28640
 }
