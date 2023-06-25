@@ -15,7 +15,8 @@ public class Pago {
     private TipoPago  metodopago;
     private Double valorfinalp;
     private String razonpago;
-
+    
+    public Pago(){};
     public int getCodigopago() {
         return codigopago;
     }

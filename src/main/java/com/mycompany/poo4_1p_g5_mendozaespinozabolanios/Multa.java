@@ -4,6 +4,8 @@
  */
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
+import static com.mycompany.poo4_1p_g5_mendozaespinozabolanios.PLATAFORMA.clientes;
+import static com.mycompany.poo4_1p_g5_mendozaespinozabolanios.PLATAFORMA.vehiculos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,7 +20,7 @@ public class Multa {
     private String fechaInfraccion;
     private String fechaNotificacion;
     private int puntos;
-
+    static ArrayList<Multa> multas;
 
     
     public  Multa(Cliente cliente, Vehiculo vehiculo, String infraccion,double valorMulta,
@@ -104,9 +106,29 @@ public class Multa {
         
         return true;
         }
-        public String toString(){
+    static ArrayList<Multa> cargarMultas(ArrayList<Multa> multas){
+        ArrayList<String> datos=ManejoArchivos.LeeFichero("multas.txt");
+        for(String line:datos){
+            String[] elem=line.trim().split(",");
+            Vehiculo v=null;
+            Cliente c=null;
+            for(Vehiculo a:vehiculos){
+                if (a.getDueño()==Integer.parseInt(elem[0])){
+                    v=a;
+                }
+            }
+            for(Cliente p:clientes){
+                if (p.getCedula()==Integer.parseInt(elem[0])){}
+            }
+            Multa m = new Multa(c,v,elem[2],Double.parseDouble(elem[3]),elem[4],elem[5],Integer.parseInt(elem[6]));
+            multas.add(m);
+        }
+        return multas;
+    }
+        public String toString(){//Prueba para verificar que la lista de multas contiene la informacion correcta
             return this.infraccion;
         }
+        
             
             
     }

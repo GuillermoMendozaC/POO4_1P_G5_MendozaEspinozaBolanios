@@ -23,17 +23,9 @@ public class PLATAFORMA {
         vehiculos= new ArrayList<>();
         operadores= new ArrayList<>();
         
-        
-        cargarVehiculo();
+        vehiculos=Vehiculo.cargarVehiculo(vehiculos);
         cargarUsuario();
-        cargarMultas();
-         System.out.println(operadores.size());
-        for(Operador o:operadores){
-            System.out.println(o);
-        }
-        for(Cliente c:clientes){
-            System.out.println(c);
-        }
+        multas=Multa.cargarMultas(multas); 
     }
    
     public void validarUsuario(String usuario, String contrasenia){
@@ -55,15 +47,7 @@ public class PLATAFORMA {
     
     
     
-    static void cargarVehiculo(){
-        ArrayList<String> datos=ManejoArchivos.LeeFichero("vehiculos.txt");
-        for(String line:datos){
-            String[] elementos=line.trim().split(",");
-            Vehiculo v=new Vehiculo(Integer.parseInt(elementos[0]),elementos[1],elementos[2],
-                    elementos[3],Integer.parseInt(elementos[4]),elementos[5],elementos[6]);
-            vehiculos.add(v);
-        }
-    }
+    
     
     static void cargarUsuario(){
         ArrayList<String> datos=ManejoArchivos.LeeFichero("usuarios.txt");
@@ -108,24 +92,7 @@ public class PLATAFORMA {
         }
     }
         
-    static void cargarMultas(){
-        ArrayList<String> datos=ManejoArchivos.LeeFichero("multas.txt");
-        for(String line:datos){
-            String[] elem=line.trim().split(",");
-            Vehiculo v=null;
-            Cliente c=null;
-            for(Vehiculo a:vehiculos){
-                if (a.getDueño()==Integer.parseInt(elem[0])){
-                    v=a;
-                }
-            }
-            for(Cliente p:clientes){
-                if (p.getCedula()==Integer.parseInt(elem[0])){}
-            }
-            Multa m = new Multa(c,v,elem[2],Double.parseDouble(elem[3]),elem[4],elem[5],Integer.parseInt(elem[6]));
-            multas.add(m);
-        }
-    }   
+       
 } 
         
 

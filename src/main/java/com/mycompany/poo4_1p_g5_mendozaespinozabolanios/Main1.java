@@ -18,8 +18,11 @@ import java.util.Scanner;
 public class Main1 {
 
     public static void main(String[] args) {
+        /* Lo comento porque cliente tiene constructor ahora por lo que va a dar 
+        error si se prueba en este momento
+        
         Scanner sc = new Scanner(System.in);
-        Cliente cli = new Cliente();
+        Cliente cli = new Cliente(); 
 
 //        cli.Consultarmultas();
         System.out.println("-----------------------------------------------\n\n            BIENVENIDO AL SISTEMA \n\n-----------------------------------------------");
@@ -47,7 +50,7 @@ public class Main1 {
             }
         } else {
             System.out.println("valio queso");
-        }
+        }*/
             
     }
 

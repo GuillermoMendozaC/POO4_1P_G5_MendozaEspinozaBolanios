@@ -16,11 +16,11 @@ import java.util.ArrayList;
  */
 public class Cliente extends Usuario {
 
-    private String Num_Tarjeta;
+    private String Num_Tarjeta; //No cambiar a int da error al leer el archivo
     private int Puntos_lic;
     private Vehiculo vehiculo;
-    private String usua = "1203864463";
-    
+    private String usua = "1203864463"; //Variable de ejemplo
+    static ArrayList<Cliente> clientes;
     public Cliente(int cedula, String nombre, String apellidos, int edad, String correo, String usuario, String contrasenia, TipoUsuario perfil, String Num_Tarjeta, int Puntos_lic, Vehiculo vehiculo){
         super(cedula,nombre,apellidos,edad,correo,usuario,contrasenia,perfil);
         this.Num_Tarjeta=Num_Tarjeta;
@@ -52,17 +52,9 @@ public class Cliente extends Usuario {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-
-   /* public TipoUsuario getTcliente() {
-        return tcliente;
-    }
-
-    public void setTcliente(TipoUsuario tcliente) {
-        this.tcliente = tcliente;
-    }*/
 //----------------------------------------------------------------------------------------------------------------------------------------------
     @Override
-    public void consultarmultas() {
+    public void consultarmultas() { //Hacer dinámico el método
         ArrayList<String> datos1 = ManejoArchivos.LeeFichero("multas.txt");
         System.out.println("----------------------DETALLE DE MULTAS-----------------------");
         System.out.println("CEDULA | MATRICULA  |  INFRACCION  |  VALOR A PAGAR  |  FECHA DE INFRACCION  |  FECHA DE NOTIFICACION  |  PUNTOS ");
@@ -117,7 +109,7 @@ public class Cliente extends Usuario {
     return null;
 }
     //----------------------------------------------------------------------------------------------------------------------------------------------
-        public String toString(){
+        public String toString(){//Prueba para verificar que la lista de clientes contiene la informacion correcta
             return "Edad: " + this.getEdad();
         }
 

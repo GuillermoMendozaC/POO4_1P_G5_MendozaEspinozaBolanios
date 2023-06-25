@@ -91,7 +91,6 @@ public abstract class Usuario {
     }
     
     
-
     
 // METODO CONSULTAR MULTAS PRUEBA 
     

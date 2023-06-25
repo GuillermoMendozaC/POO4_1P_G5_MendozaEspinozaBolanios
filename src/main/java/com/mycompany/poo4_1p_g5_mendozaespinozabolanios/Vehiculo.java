@@ -4,6 +4,7 @@
  */
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
+import static com.mycompany.poo4_1p_g5_mendozaespinozabolanios.PLATAFORMA.vehiculos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,7 +25,6 @@ public class Vehiculo {
     private String chasis;
     private String color;
     
-    
     public Vehiculo(int dueño,String placa,String marca,String modelo,int año,String chasis,String color){
         this.duenio=dueño;
         this.placa=placa;
@@ -34,6 +34,7 @@ public class Vehiculo {
         this.chasis=chasis;
         this.color=color;
     }
+    
     public int getDueño() {
         return duenio;
     }
@@ -103,8 +104,18 @@ public class Vehiculo {
         }
         
         return true;
-    } 
-    public String toString(){
+    }
+    static ArrayList<Vehiculo> cargarVehiculo(ArrayList<Vehiculo> vehiculos){
+        ArrayList<String> datos=ManejoArchivos.LeeFichero("vehiculos.txt");
+        for(String line:datos){
+            String[] elementos=line.trim().split(",");
+            Vehiculo v=new Vehiculo(Integer.parseInt(elementos[0]),elementos[1],elementos[2],
+                    elementos[3],Integer.parseInt(elementos[4]),elementos[5],elementos[6]);
+            vehiculos.add(v);
+        }
+        return vehiculos;
+    }
+    public String toString(){//Prueba para verificar que la lista de vehiculos contiene la informacion correcta
         return this.placa;
     }
 }
