@@ -16,19 +16,30 @@ import java.util.ArrayList;
  */
 public class Vehiculo {
 
-    private int dueño;
+    private int duenio;
     private String placa;
+    private String marca;
     private String modelo;
     private int año;
     private String chasis;
     private String color;
-
+    
+    
+    public Vehiculo(int dueño,String placa,String marca,String modelo,int año,String chasis,String color){
+        this.duenio=dueño;
+        this.placa=placa;
+        this.marca=marca;
+        this.modelo=modelo;
+        this.año=año;
+        this.chasis=chasis;
+        this.color=color;
+    }
     public int getDueño() {
-        return dueño;
+        return duenio;
     }
 
     public void setDueño(int dueño) {
-        this.dueño = dueño;
+        this.duenio = dueño;
     }
 
     public String getPlaca() {
@@ -37,6 +48,13 @@ public class Vehiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getModelo() {
@@ -71,42 +89,23 @@ public class Vehiculo {
         this.color = color;
     }
 
-//    public class ManejoArchivos {
-//
-//        public static ArrayList<String> LeeFichero(String nombrearchivo) {
-//            ArrayList<String> lineas = new ArrayList<>();
-//            File archivo = null;
-//            FileReader fr = null;
-//            BufferedReader br = null;
-//
-//            try {
-//                archivo = new File(nombrearchivo);
-//                fr = new FileReader(archivo, StandardCharsets.UTF_8);
-//                br = new BufferedReader(fr);
-//
-//                String linea;
-//                while ((linea = br.readLine()) != null) {
-//                    System.out.println(linea);
-//                    lineas.add(linea);
-//
-//                }
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//
-//                try {
-//                    if (null != fr) {
-//                        fr.close();
-//                    }
-//                } catch (Exception e2) {
-//                    e2.printStackTrace();
-//                }
-//            }
-//            return lineas;
-//
-//        }
-
+ public boolean equals(Object obj){
+        if(this==obj){
+            return true;
+        }if(obj==null){
+            return false;
+        }if(getClass()!=obj.getClass()){
+            return false;
+        }
+        Vehiculo otro=(Vehiculo)obj;
+        if(this.duenio!=(otro.getDueño())){
+            return false;
+        }
+        
+        return true;
+    } 
+    public String toString(){
+        return this.placa;
     }
-
+}
 

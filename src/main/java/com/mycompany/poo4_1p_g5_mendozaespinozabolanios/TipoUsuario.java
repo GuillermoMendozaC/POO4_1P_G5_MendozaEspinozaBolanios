@@ -9,5 +9,5 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
  * @author Lenovo
  */
 public enum TipoUsuario {
-    C,O
+    S,O,E
 }

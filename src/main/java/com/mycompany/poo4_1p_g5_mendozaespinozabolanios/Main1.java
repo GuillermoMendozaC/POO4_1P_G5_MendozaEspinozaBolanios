@@ -22,8 +22,8 @@ public class Main1 {
 //        System.out.println("Ingrese cedula");
 //        Scanner sc = new Scanner(System.in);
 //        String usua = sc.nextLine();
-            Cliente cli = new Cliente();
-            cli.Consultarmultas();
+//            Cliente cli = new Cliente();
+//            cli.consultarmultas();
             
             
     }

@@ -16,17 +16,26 @@ import java.util.ArrayList;
  */
 public class Cliente extends Usuario {
 
-    private int Num_Tarjeta;
+    private String Num_Tarjeta;
     private int Puntos_lic;
     private Vehiculo vehiculo;
-    private TipoUsuario tcliente;
     private String usua = "1203864463";
-
-    public int getNum_Tarjeta() {
+    
+    public Cliente(int cedula,String nombre,String apellidos,int edad,String correo,
+            String usuario,String contrasenia,TipoUsuario perfil,String Num_Tarjeta,
+            int Puntos_lic,Vehiculo vehiculo){
+        super(cedula,nombre,apellidos,edad,correo,usuario,contrasenia,perfil);
+        this.Num_Tarjeta=Num_Tarjeta;
+        this.Puntos_lic=Puntos_lic;
+        this.vehiculo=vehiculo;
+    }
+    
+    
+    public String getNum_Tarjeta() {
         return Num_Tarjeta;
     }
 
-    public void setNum_Tarjeta(int Num_Tarjeta) {
+    public void setNum_Tarjeta(String Num_Tarjeta) {
         this.Num_Tarjeta = Num_Tarjeta;
     }
 
@@ -46,17 +55,17 @@ public class Cliente extends Usuario {
         this.vehiculo = vehiculo;
     }
 
-    public TipoUsuario getTcliente() {
+   /* public TipoUsuario getTcliente() {
         return tcliente;
     }
 
     public void setTcliente(TipoUsuario tcliente) {
         this.tcliente = tcliente;
-    }
+    }*/
 
    
-        
-        public void Consultarmultas() {
+        @Override
+        public void consultarmultas() {
             ArrayList<String> datos1 = ManejoArchivos.LeeFichero("multas.txt");
 //            System.out.println("Multas: ");
                 System.out.println("----------------------DETALLE DE MULTAS-----------------------");
@@ -78,5 +87,8 @@ public class Cliente extends Usuario {
                     
         }
     }
+        public String toString(){
+            return "Edad: " + this.getEdad();
+        }
 }
 
