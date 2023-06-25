@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 /**
  *
  * @author Lenovo
@@ -19,18 +18,36 @@ import java.util.Scanner;
 public class Main1 {
 
     public static void main(String[] args) {
-//        System.out.println("Ingrese cedula");
-//        Scanner sc = new Scanner(System.in);
-//        String usua = sc.nextLine();
-            Cliente cli = new Cliente();
-            cli.Consultarmultas();
-            
-            
+        Scanner sc = new Scanner(System.in);
+        Cliente cli = new Cliente();
+
+//        cli.Consultarmultas();
+        System.out.println("-----------------------------------------------\n\n            BIENVENIDO AL SISTEMA \n\n-----------------------------------------------");
+
+        System.out.print("USUARIO : ");
+        String usua1 = sc.nextLine();
+        System.out.print("CONTRASEÑA : ");
+        String contra1 = sc.nextLine();
+
+        System.out.println("-----------------------------------------");
+        String val = cli.validarUsuario(usua1, contra1);
+        if (val != null) {
+            System.out.println("Ingrese de secion exitoso");
+            switch (val) {
+                case "O":
+                    System.out.println("Se presentara un menu de Operador");
+                    break;
+                case "E":
+                    System.out.println("Se presentara un menu de Cliente pero este es Estrella");
+                    break;
+                case "S":
+                    System.out.println("Se presentara un menu de Cliente Standar");
+                    break;
+
+            }
+        } else {
+            System.out.println("valio queso");
+        }
     }
 
-    
-    
-    
-  
-    
 }
