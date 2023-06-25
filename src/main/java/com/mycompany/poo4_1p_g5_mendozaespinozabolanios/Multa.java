@@ -14,14 +14,14 @@ public class Multa {
     private Cliente cliente;
     private Vehiculo vehiculo;
     private String infraccion;
-    private int valorMulta;
+    private double valorMulta;
     private String fechaInfraccion;
     private String fechaNotificacion;
     private int puntos;
 
 
     
-    public  Multa(Cliente cliente, Vehiculo vehiculo, String infraccion,int valorMulta,
+    public  Multa(Cliente cliente, Vehiculo vehiculo, String infraccion,double valorMulta,
     String fechaInfraccion, String fechaNotificacion,int puntos){
         this.cliente = cliente;
         this.vehiculo = vehiculo;
@@ -30,17 +30,6 @@ public class Multa {
         this.fechaInfraccion = fechaInfraccion;
         this.fechaNotificacion = fechaNotificacion;
         this.puntos = puntos;
-    }
-    public  Multa(int duenio,String plak,String infraccion,int valorMulta,
-    String fechaInfraccion, String fechaNotificacion,int puntos){
-        int cedula=duenio;
-        String placa = plak;
-        this.infraccion = infraccion;
-        this.valorMulta = valorMulta;
-        this.fechaInfraccion = fechaInfraccion;
-        this.fechaNotificacion = fechaNotificacion;
-        this.puntos = puntos;
-        
     }
 
     public Cliente getCliente() {
@@ -67,11 +56,11 @@ public class Multa {
         this.infraccion = infraccion;
     }
 
-    public int getValorMulta() {
+    public double getValorMulta() {
         return valorMulta;
     }
 
-    public void setValorMulta(int valorMulta) {
+    public void setValorMulta(double valorMulta) {
         this.valorMulta = valorMulta;
     }
 
@@ -98,5 +87,28 @@ public class Multa {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+    
+    public boolean equals(Object obj){
+        if(this==obj){
+            return true;
+        }if(obj==null){
+            return false;
+        }if(getClass()!=obj.getClass()){
+            return false;
+        }
+        Multa otro=(Multa)obj;
+        if(this.cliente.getCedula()!=otro.getCliente().getCedula() || 
+                (!this.vehiculo.getPlaca().equals(otro.getVehiculo().getPlaca()))){
+            return false;
+        }
+        
+        return true;
+        }
+        public String toString(){
+            return this.infraccion;
+        }
+            
+            
+    }
 
-}
+
