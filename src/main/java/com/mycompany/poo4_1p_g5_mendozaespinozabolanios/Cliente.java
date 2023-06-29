@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -52,36 +53,61 @@ public class Cliente extends Usuario {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-//----------------------------------------------------------------------------------------------------------------------------------------------
+    
+    //CONSULTAR MULTAS
     @Override
-    public void consultarmultas() { //Hacer dinámico el método
-        ArrayList<String> datos1 = ManejoArchivos.LeeFichero("multas.txt");
-        System.out.println("----------------------DETALLE DE MULTAS-----------------------");
-        System.out.println("CEDULA | MATRICULA  |  INFRACCION  |  VALOR A PAGAR  |  FECHA DE INFRACCION  |  FECHA DE NOTIFICACION  |  PUNTOS ");
-        int valorpagar = 0;
-        for (String cadena : datos1) {
-            String[] parts = cadena.split(",");
-            String cad = parts[0];
-            System.out.println("");
-
-            if (cad.equals(usua)) {
-                String deuda = parts[3];
-                Float conversion = Float.parseFloat(deuda);
-                valorpagar += conversion;
-                for (String cosa : parts) {
-
-                    System.out.print(cosa + " | ");
-                }
+    public void consultarmultas(){
+        ArrayList<Multa> multas = PLATAFORMA.multas;
+        double saldoPagar=0;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Ingrese su cedula o la placa de su vehiculo (si su cedula inicia con 0 omitalo): ");
+        String s = sc.nextLine().trim();
+        Multa n=null;
+        if(s.equals(String.valueOf(this.getCedula()))){
+            Vehiculo v =new Vehiculo(Integer.parseInt(s),"f",null,null,0,null,null);
+            Cliente c = new Cliente(Integer.parseInt(s),null,null,0,null,null,null,null,null,0,v);
+            n= new Multa(c,v,"d",0.0,null,null,0); 
+        }
+        else if(s.equals(this.getVehiculo().getPlaca())){
+            Vehiculo v = new Vehiculo(0,s,null,null,0,null,null);
+            Cliente c = new Cliente(0,null,null,0,null,null,null,null,null,0,null);
+            n = new Multa(c,v,null,0.0,null,null,0);
+        }
+        else if(!s.equals(String.valueOf(this.getCedula()))&&!s.equals(this.getVehiculo().getPlaca())){
+            System.out.println("La cedula o la placa es incorrecta");
+        }
+       
+        if (!multas.contains(n)){
+            System.out.println("Usted no tiene multas");
+        }
+        else{
+            System.out.println("----------------------DETALLE DE MULTAS-----------------------");
+            System.out.println("CEDULA | MATRICULA  |  INFRACCION  |  VALOR A PAGAR  |  FECHA DE INFRACCION  |  FECHA DE NOTIFICACION  |  PUNTOS ");
+            for(Multa m: multas){
+                if(this.getCedula()==m.getCliente().getCedula()){
+                     System.out.println(m.getCliente().getCedula()+"|"+m.getVehiculo().getPlaca()+"|"+m.getInfraccion()+"|"+m.getValorMulta()+"|"+m.getFechaInfraccion()+"|"+m.getFechaNotificacion()+"|"+m.getPuntos());
+                    saldoPagar+=m.getValorMulta();
             }
         }
-        Integer a = valorpagar;
-        Float c = a.floatValue();
-        System.out.println("\n VALOR A PAGAR: " + c);
+        System.out.println("\nVALOR A PAGAR: " + saldoPagar);
         System.out.println("Para PAGAR ACERQUESE A LA AGENCIA MAS CERCANA");
-
+        }
     }
 
-//  
+    
+    //AGENDAR REVISION
+    public void agendarRevision(){
+        Scanner sc=new Scanner(System.in);
+        String placa= sc.nextLine().trim();
+        
+        
+    }
+    
+    
+    
+    
+    
+
     public String validarUsuario(String usuario, String contrasena) {
     ArrayList<String> linea = ManejoArchivos.LeeFichero("usuarios.txt");
     ArrayList<String> usuarios = new ArrayList<>();
@@ -109,11 +135,10 @@ public class Cliente extends Usuario {
     return null;
 }
     //----------------------------------------------------------------------------------------------------------------------------------------------
+    @Override
         public String toString(){//Prueba para verificar que la lista de clientes contiene la informacion correcta
             return "Edad: " + this.getEdad();
         }
-
-    
-
-   
 }
+
+  

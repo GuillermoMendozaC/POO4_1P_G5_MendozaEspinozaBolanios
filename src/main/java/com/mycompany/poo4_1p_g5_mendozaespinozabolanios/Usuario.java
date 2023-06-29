@@ -95,4 +95,8 @@ public abstract class Usuario {
 // METODO CONSULTAR MULTAS PRUEBA 
     
     public abstract void consultarmultas(); 
+    
+    
+    
+    
 }

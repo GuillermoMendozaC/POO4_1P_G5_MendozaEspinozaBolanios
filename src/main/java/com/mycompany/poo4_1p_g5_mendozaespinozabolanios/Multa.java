@@ -99,12 +99,12 @@ public class Multa {
             return false;
         }
         Multa otro=(Multa)obj;
-        if(this.cliente.getCedula()!=otro.getCliente().getCedula() || 
-                (!this.vehiculo.getPlaca().equals(otro.getVehiculo().getPlaca()))){
-            return false;
+        if(this.cliente.getCedula()==otro.getCliente().getCedula() || 
+                (this.vehiculo.getPlaca().equals(otro.getVehiculo().getPlaca()))){
+            return true;
         }
         
-        return true;
+        return false;
         }
     static ArrayList<Multa> cargarMultas(ArrayList<Multa> multas){
         ArrayList<String> datos=ManejoArchivos.LeeFichero("multas.txt");
@@ -118,7 +118,9 @@ public class Multa {
                 }
             }
             for(Cliente p:clientes){
-                if (p.getCedula()==Integer.parseInt(elem[0])){}
+                if (p.getCedula()==Integer.parseInt(elem[0])){
+                    c=p;
+                }
             }
             Multa m = new Multa(c,v,elem[2],Double.parseDouble(elem[3]),elem[4],elem[5],Integer.parseInt(elem[6]));
             multas.add(m);

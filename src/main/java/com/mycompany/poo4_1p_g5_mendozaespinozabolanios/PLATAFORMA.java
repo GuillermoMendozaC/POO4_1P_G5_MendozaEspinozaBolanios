@@ -23,11 +23,20 @@ public class PLATAFORMA {
         vehiculos= new ArrayList<>();
         operadores= new ArrayList<>();
         
+        //CARGA DE LA INFORMACION DE LOS ARCHIVOS
         vehiculos=Vehiculo.cargarVehiculo(vehiculos);
         cargarUsuario();
         multas=Multa.cargarMultas(multas); 
+        
+        //PRUEBA CONSULTAR MULTA
+        Cliente p = clientes.get(0);
+        p.consultarmultas();
     }
    
+    
+    
+    
+    
     public void validarUsuario(String usuario, String contrasenia){
         
      }

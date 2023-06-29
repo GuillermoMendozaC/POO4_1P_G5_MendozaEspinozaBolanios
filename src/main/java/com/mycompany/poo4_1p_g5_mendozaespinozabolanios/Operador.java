@@ -26,7 +26,10 @@ public class Operador extends Usuario {
         this.sueldo=sueldo;
     }
     
-    public void consultarmultas(){}
+    public void consultarmultas(){
+        
+    
+    }
     
     public String toString(){//Prueba para verificar que la lista de operadores contiene la informacion correcta
         return "Sueldo: "+this.sueldo;
