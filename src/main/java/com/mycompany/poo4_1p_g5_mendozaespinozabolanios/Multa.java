@@ -90,6 +90,7 @@ public class Multa {
         this.puntos = puntos;
     }
     
+    @Override
     public boolean equals(Object obj){
         if(this==obj){
             return true;
@@ -111,7 +112,7 @@ public class Multa {
         for(String line:datos){
             String[] elem=line.trim().split(",");
             Vehiculo v=null;
-            Cliente c=null;
+            Cliente c = null;
             for(Vehiculo a:vehiculos){
                 if (a.getDueño()==Integer.parseInt(elem[0])){
                     v=a;
@@ -123,6 +124,7 @@ public class Multa {
                 }
             }
             Multa m = new Multa(c,v,elem[2],Double.parseDouble(elem[3]),elem[4],elem[5],Integer.parseInt(elem[6]));
+            
             multas.add(m);
         }
         return multas;
