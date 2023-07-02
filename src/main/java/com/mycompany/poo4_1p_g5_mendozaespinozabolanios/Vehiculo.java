@@ -89,7 +89,7 @@ public class Vehiculo {
     public void setColor(String color) {
         this.color = color;
     }
-
+@Override
  public boolean equals(Object obj){
         if(this==obj){
             return true;
@@ -99,7 +99,7 @@ public class Vehiculo {
             return false;
         }
         Vehiculo otro=(Vehiculo)obj;
-        if(this.duenio!=(otro.getDueño())){
+        if(this.getPlaca().equals(otro.getPlaca())){
             return false;
         }
         

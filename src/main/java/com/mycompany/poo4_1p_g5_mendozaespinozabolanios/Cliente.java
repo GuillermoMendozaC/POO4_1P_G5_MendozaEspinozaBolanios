@@ -6,7 +6,8 @@ import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -97,10 +98,27 @@ public class Cliente extends Usuario {
     
     //AGENDAR REVISION
     public void agendarRevision(){
+        ArrayList<Multa> multas=PLATAFORMA.multas;
+        double base = 150.0;
         Scanner sc=new Scanner(System.in);
+        System.out.println("Ingrese placa: ");
         String placa= sc.nextLine().trim();
-        
-        
+        if(placa.equals(this.getVehiculo().getPlaca())){
+            Multa n = new Multa(this,this.getVehiculo(),"",0.0,"","",0);
+            if(!multas.contains(n)){
+                System.out.println("Usted no tiene multas");
+                if(this.getPerfil().equals(TipoUsuario.E)){
+                    LocalDate fecha= LocalDate.now();
+                    LocalDateTime hora= LocalDateTime.now();
+                }
+                else{
+                    //COBRAR CIFRA NORMAL
+                }
+            }
+            else{
+                System.out.println("Usted tiene multas no puede agendar citas");
+            }
+        }
     }
     
     
