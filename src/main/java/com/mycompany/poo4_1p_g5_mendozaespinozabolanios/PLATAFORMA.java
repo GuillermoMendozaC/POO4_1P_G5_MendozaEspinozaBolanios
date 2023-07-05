@@ -20,12 +20,14 @@ public class PLATAFORMA {
     static ArrayList<Cliente> clientes;
     static ArrayList<Vehiculo> vehiculos;
     static ArrayList<Operador> operadores;
+    static ArrayList<String> usuarios;
 
     public static void main(String[] args) {
         multas = new ArrayList<>();
         clientes = new ArrayList<>();
         vehiculos = new ArrayList<>();
         operadores = new ArrayList<>();
+        usuarios = new ArrayList<>();
 
         //CARGA DE LA INFORMACION DE LOS ARCHIVOS
         vehiculos = Vehiculo.cargarVehiculo(vehiculos);
@@ -33,10 +35,11 @@ public class PLATAFORMA {
         multas = Multa.cargarMultas(multas);
 
         //PRUEBA CONSULTAR MULTA
-//        Cliente p = clientes.get(0);
+        Cliente p = clientes.get(0);
 //        p.consultarmultas();
         Operador op = operadores.get(2);
-        op.consultarmultas();
+//        op.consultarmultas();
+        op.consultarUsuarios();
     }
 
     public void validarUsuario(String usuario, String contrasenia) {
@@ -60,6 +63,7 @@ public class PLATAFORMA {
             String nombre = nombres[0];
             String apellido = nombres[1];
             int cedula = Integer.parseInt(elem[0]);
+
             if (TipoUsuario.O.equals(TipoUsuario.valueOf(elem[6]))) {//Valida si el usuario es un operador o cliente
                 for (String line3 : datos3) {
                     String[] elem3 = line3.trim().split(",");
@@ -83,10 +87,13 @@ public class PLATAFORMA {
 
                     c = new Cliente(cedula, nombre, apellido, Integer.parseInt(elem[2]),
                             elem[3], elem[4], elem[5], TipoUsuario.valueOf(elem[6]), elem2[1], Integer.parseInt(elem2[2]), v);
+
                 }
                 clientes.add(c);
+
             }
         }
+
     }
 
 }
