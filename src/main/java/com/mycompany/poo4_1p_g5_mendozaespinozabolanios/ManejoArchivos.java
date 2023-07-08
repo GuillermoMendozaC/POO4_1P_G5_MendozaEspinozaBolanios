@@ -11,6 +11,8 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 /**
@@ -56,5 +58,32 @@ public class ManejoArchivos {
         return lineas;
 
     }
+    public static void EscribirArchivo(String nombreArchivo, String linea) {
+
+        FileWriter fichero = null;
+        BufferedWriter bw = null;
+        PrintWriter pw = null;
+        try {
+            fichero = new FileWriter(nombreArchivo,true);
+            bw = new BufferedWriter(fichero);
+            bw.write(linea+"\n");
+            System.out.println("ksdsdlsd");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para 
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    //fichero.close();
+                    bw.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }
+
     
 }

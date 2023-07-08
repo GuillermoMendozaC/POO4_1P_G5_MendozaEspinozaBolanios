@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,15 +21,14 @@ public class PLATAFORMA {
     static ArrayList<Cliente> clientes;
     static ArrayList<Vehiculo> vehiculos;
     static ArrayList<Operador> operadores;
-    static ArrayList<String> usuarios;
-
+    static ArrayList<Usuario> usuarios;
     public static void main(String[] args) {
         multas = new ArrayList<>();
         clientes = new ArrayList<>();
         vehiculos = new ArrayList<>();
         operadores = new ArrayList<>();
         usuarios = new ArrayList<>();
-
+//        List<Usuario> usuarios = new ArrayList<>();
         //CARGA DE LA INFORMACION DE LOS ARCHIVOS
         vehiculos = Vehiculo.cargarVehiculo(vehiculos);
         cargarUsuario();
@@ -39,7 +39,9 @@ public class PLATAFORMA {
 //        p.consultarmultas();
         Operador op = operadores.get(2);
 //        op.consultarmultas();
-        op.consultarUsuarios();
+        //op.consultarUsuarios(usuarios);
+        op.registrarPagos();
+
     }
 
     public void validarUsuario(String usuario, String contrasenia) {
@@ -60,8 +62,11 @@ public class PLATAFORMA {
             Operador p = null;
             String[] elem = line.trim().split(",");
             String[] nombres = elem[1].split(" ");
+
             String nombre = nombres[0];
             String apellido = nombres[1];
+
+            String tipoUsuario = elem[6].trim();
             int cedula = Integer.parseInt(elem[0]);
 
             if (TipoUsuario.O.equals(TipoUsuario.valueOf(elem[6]))) {//Valida si el usuario es un operador o cliente
@@ -71,6 +76,7 @@ public class PLATAFORMA {
                         p = new Operador(cedula, nombre, apellido, Integer.parseInt(elem[2]),
                                 elem[3], elem[4], elem[5], TipoUsuario.valueOf(elem[6]), Integer.parseInt(elem3[1]));
                         operadores.add(p);
+                        usuarios.add(p);
                     }
                 }
 
@@ -90,8 +96,10 @@ public class PLATAFORMA {
 
                 }
                 clientes.add(c);
+                usuarios.add(c);
 
             }
+
         }
 
     }

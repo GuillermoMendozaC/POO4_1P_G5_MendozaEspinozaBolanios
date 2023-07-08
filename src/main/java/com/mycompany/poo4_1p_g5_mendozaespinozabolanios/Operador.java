@@ -5,6 +5,9 @@
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -56,38 +59,80 @@ public class Operador extends Usuario {
 
     }
 
-    public void consultarUsuarios() {
+    public void consultarUsuarios(ArrayList<Usuario> datos) {
         ArrayList<Cliente> clientes = PLATAFORMA.clientes;
         ArrayList<Operador> operadores = PLATAFORMA.operadores;
-        ArrayList<String> datos = ManejoArchivos.LeeFichero("usuarios.txt");
+        System.out.println("----------------------------------------------------CONSULTAR USUARIOS-------------------------------------------\n");
 
-        System.out.println("----------------------------------------------------CONSULTAR USUARIOS-------------------------------------------");
-
-        for (int x = 0; x < datos.size(); x++) {
-            String lista = datos.get(x);
-            String[] elem = lista.split(",");
-            int cedula = Integer.parseInt(elem[0]);
+//        for (int x = 0; x < datos.size(); x++) {
+        for (Usuario usuario : datos) {
             for (int y = 0; y < clientes.size(); y++) {
                 Cliente val2 = clientes.get(y);
-                if (val2.getCedula() == cedula) {
+                if (val2.getCedula() == usuario.getCedula()) {
                     String usua = val2.getUsuario();
                     String contra = val2.getContrasenia();
                     String validacion = val2.validarUsuario(usua, contra);
                     if (validacion.equals("S")) {
-                        System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRANDAR"+ "  |  " + val2.getCedula());
+                        System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRANDAR" + "  |  " + val2.getCedula());
                     } else {
-                        System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRELLA"+ "  |  " + val2.getCedula());
+                        System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRELLA" + "  |  " + val2.getCedula());
 
                     }
                 }
             }
             for (int y = 0; y < operadores.size(); y++) {
                 Operador val2 = operadores.get(y);
-                if (val2.getCedula() == cedula) {
+                if (val2.getCedula() == usuario.getCedula()) {
                     System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "OPERADOR" + "  |  " + val2.sueldo);
                 }
             }
 
+        }
+    }
+
+    public void registrarPagos() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese numero de cedula del cliente: ");
+        String ced = sc.nextLine();
+        System.out.println("QUE DESEA PAGAR?\n1. Multas \n2. Revision  \nElija una opcion: ");
+        int op1 = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Valor a pagar: ");
+        double valor = sc.nextDouble();
+        sc.nextLine();
+
+        System.out.println("Que metodo de pago va a usar?\n1. Efectivo \n2. Tarjeta de credito  \nElija una opcion: ");
+        int op2 = sc.nextInt();
+        sc.nextLine();
+        double adiciontc = (valor * 0.10) + valor;
+        Date today = Calendar.getInstance().getTime();
+        String codigo = ced.substring(0, 2) + ced.substring(ced.length() - 2);
+
+        System.out.println("CODIGO--" + codigo);
+
+        if (op2 == 1) {
+            if (op1== 1) {
+
+                ManejoArchivos.EscribirArchivo("Pagoprueba.txt", codigo + "," + ced + "," + valor + "," + "E"+","  + valor + "," + today + "," + "Multas");
+                System.out.println("1");
+            } else {
+                ManejoArchivos.EscribirArchivo("Pagoprueba.txt", codigo + "," + ced + "," + valor + "," + "E"+","  + valor + "," + today + "," + "Multas");
+                                System.out.println("2");
+
+            }
+        }else{
+            if (op1== 1) {
+
+                ManejoArchivos.EscribirArchivo("Pagoprueba.txt", codigo + "," + ced + "," + valor + "," + "T"+"," + adiciontc + "," + today + "," + "Revision");
+                                System.out.println("3");
+
+            } else {
+                ManejoArchivos.EscribirArchivo("Pagoprueba.txt", codigo + "," + ced + "," + valor + "," + "T"+","  + adiciontc + "," + today + "," + "Revision");
+                                System.out.println("14");
+
+            }
+            
         }
     }
 
