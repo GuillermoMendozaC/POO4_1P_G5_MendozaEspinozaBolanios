@@ -127,7 +127,7 @@ public class Cliente extends Usuario {
                     valor_P=base+((30-this.Puntos_lic)*10);
                     
                 }
-            System.out.println(this.getNombre()+" "+this.getApellido()+"se ha agendado su cita para el "+fechas.get(horario-1).split(" ")[0]+
+            System.out.println(this.getNombre()+" "+this.getApellido()+"se ha agendado su cita para el "+fechas.get(horario-1).split(" ")[0]+"a las " + fechas.get(horario-1).split(" ")[1]+
                     "\nValor a pagar: "+valor_P);
             System.out.println("Puede pagar su cita hasta 24 horas antes de la cita.\nDe lo contrario la cita se cancelara");
            
