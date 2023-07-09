@@ -6,7 +6,7 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 import java.util.ArrayList;
 import java.util.List;
 /**
- *
+ *Clase abstracta Usuario sera heredada por operador y cliente
  * @author Guillermo Mendoza
  */
 public abstract class Usuario {

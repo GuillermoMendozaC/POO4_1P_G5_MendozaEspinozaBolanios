@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- *
+ * Esta clase representa a los metodos que puede realizar un cliente
  * @author Guillermo Mendoza
  */
 public class Cliente extends Usuario {

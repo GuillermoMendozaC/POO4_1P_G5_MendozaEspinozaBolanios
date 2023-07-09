@@ -5,7 +5,7 @@
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
 /**
- * 
+ * Tipos de perfil de usuario
  * @author Guillermo Mendoza
  */
 

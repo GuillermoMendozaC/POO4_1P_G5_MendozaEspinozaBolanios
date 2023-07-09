@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 /**
- * 
+ * Esta clase crea las multas de los clientes
  * @author Tomas Bolaños
  */
 

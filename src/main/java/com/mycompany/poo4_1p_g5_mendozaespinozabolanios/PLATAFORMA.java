@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *  Clase main
+ *  Clase principal en la que se ejecuta el programa
  * @author Grupo 5
  */
 public class PLATAFORMA {
