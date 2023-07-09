@@ -78,10 +78,10 @@ public class Operador extends Usuario {
                 if (val2.getCedula() == usuario.getCedula()) {
                     String usua = val2.getUsuario();
                     String contra = val2.getContrasenia();
-                    Usuario validacion = .validarUsuario(usua, contra);
+                    Usuario validacion = PLATAFORMA.validarUsuario(usua, contra);
                     // Se imprime la información del cliente según su tipo (estándar o estrella)
 
-                    if (validacion.getPerfil().equals("S")) {
+                    if (validacion.getPerfil().equals(TipoUsuario.E)) {
                         System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRANDAR" + "  |  " + val2.getCedula());
                     } else {
                         System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRELLA" + "  |  " + val2.getCedula());
