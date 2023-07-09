@@ -6,8 +6,8 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
 /**
  *
- * @author Lenovo
+ * @author Guillermo Mendoza
  */
 public enum TipoUsuario {
-    S,O,E
+    S,O,E //Tipos de perfil del usuario, S=Estandar, E=Estrella,O=Operador
 }

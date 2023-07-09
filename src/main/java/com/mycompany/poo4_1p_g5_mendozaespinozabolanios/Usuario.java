@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  *
- * @author Lenovo
+ * @author Guillermo Mendoza
  */
 public abstract class Usuario {
     private int cedula;
@@ -19,6 +19,17 @@ public abstract class Usuario {
     private String contrasenia;
     private TipoUsuario perfil;
     
+    /**
+     * 
+     * @param cedula del usuario
+     * @param nombre del usuario
+     * @param apellidos del usuario
+     * @param edad del usuario
+     * @param correo del usuario
+     * @param usuario para iniciar sesion
+     * @param contrasenia iniciar sesion
+     * @param perfil tipo de usuario
+     */
     public Usuario(int cedula,String nombre,String apellidos,int edad,String correo,
             String usuario,String contrasenia,TipoUsuario perfil){
         this.cedula=cedula;
@@ -32,7 +43,7 @@ public abstract class Usuario {
     }
     
     
-    
+    //GETTERS Y SETTERS
     public int getCedula() {
         return cedula;
     }
@@ -92,7 +103,7 @@ public abstract class Usuario {
     
     
     
-// METODO CONSULTAR MULTAS PRUEBA 
+// Metodo abstracto consultarmultas, debe ser sobreescrito en las clases hijas
     
     public abstract void consultarmultas(); 
     
