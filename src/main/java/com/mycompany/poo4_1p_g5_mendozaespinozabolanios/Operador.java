@@ -79,7 +79,7 @@ public class Operador extends Usuario {
             int mes = Integer.parseInt(lelem[1]);
             //Si el mes obtenido es igual al mes que ingreso el usuario, se presenta la informacion
             if (meses[mes - 1].equals(mes1)) {
-                System.out.println(val1.getCliente().getApellido() + " " + val1.getCliente().getNombre() + " | " + val1.getVehiculo() + " | " + val1.getInfraccion() + " | " + val1.getValorMulta() + " | " + val1.getFechaInfraccion() + " | " + val1.getFechaNotificacion() + " | " + val1.getPuntos());
+                System.out.println(val1.getCliente().getApellido() + " " + val1.getCliente().getNombre() + " | " + val1.getVehiculo().getPlaca() + " | " + val1.getInfraccion() + " | " + val1.getValorMulta() + " | " + val1.getFechaInfraccion() + " | " + val1.getFechaNotificacion() + " | " + val1.getPuntos());
             }
         }
 
