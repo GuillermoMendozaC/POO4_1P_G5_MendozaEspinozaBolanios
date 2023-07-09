@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * Esta clase representara un Operador
  *
- * @author Lenovo
+ * @author Nahin Espinoza
  */
 public class Operador extends Usuario {
 
@@ -36,11 +36,17 @@ public class Operador extends Usuario {
         this.sueldo = sueldo;
     }
 //GETTERS Y SETTERS 
-
+    /**
+     * Obtiene el sueldo del operador
+     * @return el sueldo del operador
+     */
     public int getSueldo() {
         return sueldo;
     }
-
+    /**
+     * Establece un sueldo para el operador
+     * @param sueldo Establece un nuevo sueldo para el operador
+     */
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
@@ -83,7 +89,7 @@ public class Operador extends Usuario {
      * Este metodo muestra lo datos de los usuarios, dependiendo si es Operador
      * o Cliente (varian dependiendo de cada uno)
      *
-     * @param datos
+     * @param datos Arraylist de datos
      */
     public void consultarUsuarios(ArrayList<Usuario> datos) {
         // Se obtienen las listas de clientes y operadores de la clase plataforma
@@ -149,18 +155,17 @@ public class Operador extends Usuario {
         // Se guarda la informacion del pago en el archivo txt y se valida dependiendo  su metodo o razon de pago 
         ArrayList<Cliente> clientes = PLATAFORMA.clientes;
         int cedint = Integer.parseInt(ced);
+        //Se recorre la lista de Clientes para obtener el cliente al que le pertenece la cedula ingresada
         Cliente clencontrado = null;
-       
         for (Cliente cli : clientes) {
             if (cli.getCedula() == cedint) {
                 clencontrado = cli;
             }
-
         }
+        //Se valida para cada caso de registro de texto 
         if (op2 == 1) {
             if (op1 == 1) {
 
-                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Multas");
             Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.E,valor,"Multa");
                             ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+"," +today+","+pa.getRazonpago());
 
@@ -169,7 +174,6 @@ public class Operador extends Usuario {
                             Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.E,valor,"Revision");
                             ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
 
-                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Revision");
 
             }
         } else {
@@ -177,12 +181,10 @@ public class Operador extends Usuario {
                 Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.T,adiciontc,"Multa");
                             ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
 
-                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "T" + "," + adiciontc + "," + today + "," + "Multa");
 
             } else {
                  Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.T,adiciontc,"Revision");
                             ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
-                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "T" + "," + adiciontc + "," + today + "," + "Revision");
 
             }
         }
