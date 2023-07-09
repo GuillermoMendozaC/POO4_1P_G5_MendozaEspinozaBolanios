@@ -8,6 +8,7 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
  * 
  * @author Guillermo Mendoza
  */
+
 public enum TipoUsuario {
     /**
      * Cliente Estandar
@@ -22,3 +23,4 @@ public enum TipoUsuario {
      */
     E 
 }
+

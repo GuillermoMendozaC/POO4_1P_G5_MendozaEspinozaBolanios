@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  *Esta clase representara un vehiculo
- * @author Nahin
+ * @author Nahin Espinoza
  */
 public class Vehiculo {
 
@@ -45,59 +45,103 @@ public class Vehiculo {
         this.chasis = chasis;
         this.color = color;
     }
-
+//GETTERS Y SETTERS
+    /**
+     * Obtiene la cedula del Dueño 
+     * @return la cedula del Dueño 
+     */
+    
     public int getDueño() {
         return duenio;
     }
-
+    /**
+     * Establece la cedula del Dueño
+     * @param dueño cedula nueva del Dueño
+     */
     public void setDueño(int dueño) {
         this.duenio = dueño;
     }
-
+    /**
+     * Obtiene la placa del vehiculo
+     * @return la placa del vehiculo
+     */
     public String getPlaca() {
         return placa;
     }
-
+    /**
+     * Establece la placa del vehiculo 
+     * @param placa Establece la nueva placa del vehiculo 
+     */
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-
+    /**
+     * Obtiene la marca del vehiculo 
+     * @return la marca del vehiculo 
+     */
     public String getMarca() {
         return marca;
     }
-
+    /**
+     * Establece la marca del Vehiculo
+     * @param marca Establece la nueva marca del Vehiculo
+     */
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
+    /**
+     * Obtiene el modelo del vehiculo 
+     * @return el modelo del vehiculo 
+     */
     public String getModelo() {
         return modelo;
     }
-
+    /**
+     * Establece un modelo del vehiculo
+     * @param modelo Establece un nuevo modelo del vehiculo
+     */
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-
+    /**
+     * Obtiene el año de elaboracion del vehiculo
+     * @return  el año de elaboracion del vehiculo
+     */
     public int getAño() {
         return año;
     }
-
+    /**
+     * Establece el año de elboracion del vehiculo
+     * @param año Establece el nuevo año de elboracion del vehiculo
+     */
     public void setAño(int año) {
         this.año = año;
     }
-
+    /**
+     * Obtiene el codigo del chasis del vehiculo
+     * @return el codigo del chasis del vehiculo
+     */
     public String getChasis() {
         return chasis;
     }
-
+    /**
+     * Establece el codigo del chasis del vehiculo
+     * @param chasis Establece un nuevo codigo del chasis del vehiculo
+     */
     public void setChasis(String chasis) {
         this.chasis = chasis;
     }
-
+    /**
+     * Obtiene el color del vehiculo
+     * @return el color del vehiculo
+     */
     public String getColor() {
         return color;
     }
-
+    /**
+     * Establece el color del vehiculo
+     * @param color Establece un nuevo color de vehiculo
+     */
     public void setColor(String color) {
         this.color = color;
     }
@@ -139,6 +183,6 @@ public class Vehiculo {
     
     
     public String toString() {
-        return this.placa;
+        return "Vehiculo"+this.duenio+this.placa+this.marca+this.modelo+this.año+this.chasis+this.color;
     }
 }

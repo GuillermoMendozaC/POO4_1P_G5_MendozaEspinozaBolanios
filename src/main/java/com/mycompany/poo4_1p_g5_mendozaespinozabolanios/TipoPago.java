@@ -9,5 +9,13 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
  * @author Nahin Espinoza
  */
 public enum TipoPago {
-    E,T
+    /**
+     * Pago Efectivo
+     */
+    E,
+    /**
+     *Pago tarjeta de credito
+     */
+    T
 }
+    
