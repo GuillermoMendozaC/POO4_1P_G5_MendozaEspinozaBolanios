@@ -5,8 +5,8 @@
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
 /**
- *
- * @author User
+ *Enum de los Tipos de pagos 
+ * @author Nahin Espinoza
  */
 public enum TipoPago {
     E,T

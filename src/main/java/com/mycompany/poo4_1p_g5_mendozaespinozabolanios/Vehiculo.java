@@ -12,8 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
- *
- * @author User
+ *Esta clase representara un vehiculo
+ * @author Nahin
  */
 public class Vehiculo {
 
@@ -24,17 +24,28 @@ public class Vehiculo {
     private int año;
     private String chasis;
     private String color;
+
+    /**
+     * Constructor del obejto Vehiculo 
+     * @param dueño Cedula del dueño del vehiculo
+     * @param placa Placa del vehiculo
+     * @param marca Marca del vehiculo
+     * @param modelo Modelo del vehiculo
+     * @param año Año de fabricacion del vahiculo
+     * @param chasis Numero de chasis del vehiculo
+     * @param color  Color del vehiculo
+     */ 
     
-    public Vehiculo(int dueño,String placa,String marca,String modelo,int año,String chasis,String color){
-        this.duenio=dueño;
-        this.placa=placa;
-        this.marca=marca;
-        this.modelo=modelo;
-        this.año=año;
-        this.chasis=chasis;
-        this.color=color;
+    public Vehiculo(int dueño, String placa, String marca, String modelo, int año, String chasis, String color) {
+        this.duenio = dueño;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.año = año;
+        this.chasis = chasis;
+        this.color = color;
     }
-    
+
     public int getDueño() {
         return duenio;
     }
@@ -50,6 +61,7 @@ public class Vehiculo {
     public void setPlaca(String placa) {
         this.placa = placa;
     }
+
     public String getMarca() {
         return marca;
     }
@@ -89,34 +101,44 @@ public class Vehiculo {
     public void setColor(String color) {
         this.color = color;
     }
-@Override
- public boolean equals(Object obj){
-        if(this==obj){
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        }if(obj==null){
-            return false;
-        }if(getClass()!=obj.getClass()){
+        }
+        if (obj == null) {
             return false;
         }
-        Vehiculo otro=(Vehiculo)obj;
-        if(!this.getPlaca().equals(otro.getPlaca())){
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        
+        Vehiculo otro = (Vehiculo) obj;
+        if (!this.getPlaca().equals(otro.getPlaca())) {
+            return false;
+        }
+
         return true;
     }
-    static ArrayList<Vehiculo> cargarVehiculo(ArrayList<Vehiculo> vehiculos){
-        ArrayList<String> datos=ManejoArchivos.LeeFichero("vehiculos.txt");
-        for(String line:datos){
-            String[] elementos=line.trim().split(",");
-            Vehiculo v=new Vehiculo(Integer.parseInt(elementos[0]),elementos[1],elementos[2],
-                    elementos[3],Integer.parseInt(elementos[4]),elementos[5],elementos[6]);
+/**
+ * Se carga la informacion de el archivo "Vehiculo.txt" en el Arraylist vehiculos
+ * @param vehiculos Arraylist de Vehiculos 
+ * @return Arraylist de Vehiculos
+ */
+    static ArrayList<Vehiculo> cargarVehiculo(ArrayList<Vehiculo> vehiculos) {
+        ArrayList<String> datos = ManejoArchivos.LeeFichero("vehiculos.txt");
+        //Se recorre cada linea del archivo y se va agregando cada objeto en el Arraylist
+        for (String line : datos) {
+            String[] elementos = line.trim().split(",");
+            Vehiculo v = new Vehiculo(Integer.parseInt(elementos[0]), elementos[1], elementos[2],
+                    elementos[3], Integer.parseInt(elementos[4]), elementos[5], elementos[6]);
             vehiculos.add(v);
         }
         return vehiculos;
     }
-    public String toString(){//Prueba para verificar que la lista de vehiculos contiene la informacion correcta
+    
+    
+    public String toString() {
         return this.placa;
     }
 }
-

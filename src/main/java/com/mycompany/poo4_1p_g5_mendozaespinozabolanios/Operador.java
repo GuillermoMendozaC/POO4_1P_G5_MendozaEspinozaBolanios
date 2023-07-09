@@ -11,17 +11,31 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Esta clase representara un Operador
  *
  * @author Lenovo
  */
 public class Operador extends Usuario {
 
     private int sueldo;
-    //Constructor de la calse Operador
+
+    /**
+     *
+     * @param cedula Cedula del Operador
+     * @param nombre Nombre del Operador
+     * @param apellidos Apeliido del Operador
+     * @param edad Edad del Operador
+     * @param correo Correro del Operador
+     * @param usuario Usuario del Operador
+     * @param contrasenia Contraseña del Operador
+     * @param perfil Tipo de Usuario
+     * @param sueldo Sueldo del Operador
+     */
     public Operador(int cedula, String nombre, String apellidos, int edad, String correo, String usuario, String contrasenia, TipoUsuario perfil, int sueldo) {
         super(cedula, nombre, apellidos, edad, correo, usuario, contrasenia, perfil);
         this.sueldo = sueldo;
     }
+//GETTERS Y SETTERS 
 
     public int getSueldo() {
         return sueldo;
@@ -31,8 +45,11 @@ public class Operador extends Usuario {
         this.sueldo = sueldo;
     }
 
+    /**
+     * Este metodo permite conocer todas las multas de los clientes en el mes
+     * ingresado
+     */
     @Override
-    //------------------------------------METODOS------------------------------------------
     public void consultarmultas() {
         ArrayList<Multa> multas = PLATAFORMA.multas;
         ArrayList<Cliente> clientes = PLATAFORMA.clientes;
@@ -62,6 +79,12 @@ public class Operador extends Usuario {
 
     }
 
+    /**
+     * Este metodo muestra lo datos de los usuarios, dependiendo si es Operador
+     * o Cliente (varian dependiendo de cada uno)
+     *
+     * @param datos
+     */
     public void consultarUsuarios(ArrayList<Usuario> datos) {
         // Se obtienen las listas de clientes y operadores de la clase plataforma
 
@@ -99,6 +122,10 @@ public class Operador extends Usuario {
         }
     }
 
+    /**
+     * Este metodo registra un pago segun los datos ingresados en el archivo
+     * "Pago.txt"
+     */
     public void registrarPagos() {
         Scanner sc = new Scanner(System.in);
         //Se pide al usuario toda la informacion a necesitar 
@@ -120,31 +147,50 @@ public class Operador extends Usuario {
         //Genera un código basado en los primeros y últimos dos dígitos de la cédula
         String codigo = ced.substring(0, 2) + ced.substring(ced.length() - 2);
         // Se guarda la informacion del pago en el archivo txt y se valida dependiendo  su metodo o razon de pago 
+        ArrayList<Cliente> clientes = PLATAFORMA.clientes;
+        int cedint = Integer.parseInt(ced);
+        Cliente clencontrado = null;
+       
+        for (Cliente cli : clientes) {
+            if (cli.getCedula() == cedint) {
+                clencontrado = cli;
+            }
+
+        }
         if (op2 == 1) {
             if (op1 == 1) {
 
-                ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Multas");
-                
-                
+                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Multas");
+            Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.E,valor,"Multa");
+                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+"," +today+","+pa.getRazonpago());
+
+
             } else {
-                ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Revision");
+                            Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.E,valor,"Revision");
+                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
+
+                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Revision");
 
             }
         } else {
             if (op1 == 1) {
+                Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.T,adiciontc,"Multa");
+                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
 
-                ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "T" + "," + adiciontc + "," + today + "," + "Multa");
+                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "T" + "," + adiciontc + "," + today + "," + "Multa");
 
             } else {
-                ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "T" + "," + adiciontc + "," + today + "," + "Revision");
+                 Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.T,adiciontc,"Revision");
+                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
+                //ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "T" + "," + adiciontc + "," + today + "," + "Revision");
 
             }
         }
     }
 
     @Override
-    public String toString() {//Prueba para verificar que la lista de operadores contiene la informacion correcta
-        return "Sueldo: " + this.sueldo;
-    }
+    public String toString() {
+        return "Operador" + this.getCedula() + this.getNombre() + this.getApellido() + this.getEdad() + this.getCorreo() + this.getUsuario() + this.getContrasenia() + this.getPerfil() + this.getSueldo();
 
+    }
 }

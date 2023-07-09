@@ -4,10 +4,6 @@
  */
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
-/**
- *
- * @author Lenovo
- */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,10 +12,16 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 /**
- *
- * @author Lenovo
+ *En esta clase estan los metodos relacionados con el manejo de los  archivos 
+ * @author  
  */
 public class ManejoArchivos {
+    
+    /**
+     * Este metodo leera el archivo 
+     * @param nombrearchivo Es el nombre del archivo a leer 
+     * @return Retorna las lineas del archivo 
+     */
     public static ArrayList<String> LeeFichero(String nombrearchivo) {
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;
@@ -58,6 +60,11 @@ public class ManejoArchivos {
         return lineas;
 
     }
+    /**
+     * Con este metodo podemos escribir dentro de un archivo txt
+     * @param nombreArchivo Nombre del Archivo donde escribiremos
+     * @param linea String que se escibira 
+     */
     public static void EscribirArchivo(String nombreArchivo, String linea) {
 
         FileWriter fichero = null;
