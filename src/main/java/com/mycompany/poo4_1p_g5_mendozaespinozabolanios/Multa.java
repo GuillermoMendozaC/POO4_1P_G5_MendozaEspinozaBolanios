@@ -47,58 +47,101 @@ public class Multa {
         this.puntos = puntos;
     }
     //GETTERS Y SETTERS
+    /**
+     * 
+     * @return el cliente al que le pertenece la multa 
+     */
     public Cliente getCliente() {
         return cliente;
     }
-
+    /**
+     * Cambia el cliente de la multa
+     * @param cliente nuevo cliente
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
+    /**
+     * 
+     * @return el vehiculo que se registra en la infraccion
+     */
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-
+    /**
+     * Cambia el vehiculo de la infraccion
+     * @param vehiculo nuevo vehiculo
+     */
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-
+    /**
+     * 
+     * @return la razon de la multa
+     */
     public String getInfraccion() {
         return infraccion;
     }
-
+    /**
+     * Cambia la razon de la infraccion de la multa
+     * @param infraccion nueva infraccion
+     */
     public void setInfraccion(String infraccion) {
         this.infraccion = infraccion;
     }
-
+    /**
+     * 
+     * @return el valor a cancelar de la multa
+     */
     public double getValorMulta() {
         return valorMulta;
     }
-
+    /**
+     * Cambiar valor de la multa
+     * @param valorMulta nuevo valor a cancelar
+     */
     public void setValorMulta(double valorMulta) {
         this.valorMulta = valorMulta;
     }
-
+    /**
+     * 
+     * @return la fecha en la que se cometio la infraccion
+     */
     public String getFechaInfraccion() {
         return fechaInfraccion;
     }
-
+    /**
+     * Cambia la fecha de la infraccion
+     * @param fechaInfraccion nueva fecha de infraccion
+     */
     public void setFechaInfraccion(String fechaInfraccion) {
         this.fechaInfraccion = fechaInfraccion;
     }
-
+    /**
+     * 
+     * @return la fecha en la que se le notifico al cliente la multa
+     */
     public String getFechaNotificacion() {
         return fechaNotificacion;
     }
-
+    /**
+     * Cambia la fecha en la que se notifico la multa
+     * @param fechaNotificacion nueva fecha de notificacion
+     */
     public void setFechaNotificacion(String fechaNotificacion) {
         this.fechaNotificacion = fechaNotificacion;
     }
-
+    /**
+     * 
+     * @return puntos de la licencia que se quitan al cliente
+     */
     public int getPuntos() {
         return puntos;
     }
-
+    /**
+     * Cambia los puntos que se quitan en la licencia
+     * @param puntos  nuevos puntos a quitar
+     */
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
@@ -124,7 +167,7 @@ public class Multa {
      * 
      * @param multas ArrayList de multas
      * Carga la informacion del archivo de multas
-     * @return 
+     * @return lista de multas 
      */
     static ArrayList<Multa> cargarMultas(ArrayList<Multa> multas){
         ArrayList<String> datos=ManejoArchivos.LeeFichero("multas.txt");

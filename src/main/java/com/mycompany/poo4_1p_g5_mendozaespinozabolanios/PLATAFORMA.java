@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  *  Clase main
- * @authors Guillermo Mendoza, Nahim Espinoza, Tomas Balaños
+ * @author Grupo 5
  */
 public class PLATAFORMA {
 
@@ -28,7 +28,10 @@ public class PLATAFORMA {
     static ArrayList<Vehiculo> vehiculos;
     static ArrayList<Operador> operadores;
     static ArrayList<Usuario> usuarios;
-    
+    /**
+     * Main
+     * @param args main
+     */
     public static void main(String[] args) {
         multas = new ArrayList<>();
         clientes = new ArrayList<>();
@@ -204,7 +207,9 @@ public class PLATAFORMA {
 
         return null;
     }
-    
+    /**
+     * Genera fechas para las revisiones
+     */
     public static void generarFechas(){
         for(int i=0;i<=240;i+=30){
             Date f=new Date(123,5,7,9,i,0);

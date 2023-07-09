@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * Esta clase representara un Operador
  *
- * @author Lenovo
+ * @author Nahin Espinoza
  */
 public class Operador extends Usuario {
 

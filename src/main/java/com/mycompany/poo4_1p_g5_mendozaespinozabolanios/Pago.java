@@ -7,7 +7,7 @@ package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 /**
  * Clase
  *
- * @author Nahin
+ * @author Nahin Espinoza
  */
 public class Pago {
 

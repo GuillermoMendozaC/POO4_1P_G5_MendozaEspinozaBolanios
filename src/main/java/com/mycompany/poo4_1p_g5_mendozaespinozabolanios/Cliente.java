@@ -47,32 +47,54 @@ public class Cliente extends Usuario {
     }
     
     //GETTERS Y SETTERS
+    /**
+     * 
+     * @return numero de tarjeta del duenio
+     */
     public String getNum_Tarjeta() {
         return Num_Tarjeta;
     }
-
+    /**
+     * Se cambia el numero de tarjeta
+     * @param Num_Tarjeta numero de tarjeta del usuario
+     */
     public void setNum_Tarjeta(String Num_Tarjeta) {
         this.Num_Tarjeta = Num_Tarjeta;
     }
-
+    /**
+     * 
+     * @return puntos de lincencia del cliente
+     */
     public int getPuntos_lic() {
         return Puntos_lic;
     }
-
+    /**
+     * Cambia los puntos de lincencia del cliente
+     * @param Puntos_lic puntos de licencia nuevos
+     */
     public void setPuntos_lic(int Puntos_lic) {
         this.Puntos_lic = Puntos_lic;
     }
-
+    /**
+     * 
+     * @return objeto vehiculo del cliente
+     */
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-
+    /**
+     * Cambia el objeto vehiculo del cliente
+     * @param vehiculo vehiculo nuevo
+     */
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
     
     //CONSULTAR MULTAS
     @Override
+    /**
+     * Metodo mediante el cliente puede consultar todas sus multas.
+     */
     public void consultarmultas(){
         ArrayList<Multa> multas = PLATAFORMA.multas; //Llama la lista de multas cargadas en la plataforma
         double saldoPagar=0;
@@ -110,6 +132,9 @@ public class Cliente extends Usuario {
 
     
     //AGENDAR REVISION
+    /**
+     * Metodo para agendar y registrar la revision del vehiculo
+     */
     public void agendarRevision(){
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-YYYY");
         ArrayList<Date> fechas=PLATAFORMA.fechas;//Llama la lista de fechas cargadas en la plataforma

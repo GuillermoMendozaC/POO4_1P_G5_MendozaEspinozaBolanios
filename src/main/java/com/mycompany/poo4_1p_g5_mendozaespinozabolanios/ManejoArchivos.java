@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 /**
  *En esta clase estan los metodos relacionados con el manejo de los  archivos 
- * @author  
+ * @author Veronica Duarte
  */
 public class ManejoArchivos {
     
