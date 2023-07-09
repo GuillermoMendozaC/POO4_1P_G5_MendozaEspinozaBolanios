@@ -41,19 +41,20 @@ Cliente cli = new Cliente(0, null, null, 0, null, usua1, contra1, null, null, 0,
 Operador op = new Operador(0, null, null,0, null,usua1, contra1, null,0);//agregado, un operador con esos datos
 
 
-        System.out.println("-----------------------------------------");
+        System.out.println("---------------------------------------------------");
         String val = cli.validarUsuario(usua1, contra1);
         if (val != null) {
-            System.out.println("Ingreso de sesión exitoso");
+            System.out.println("             Ingreso de sesión exitoso\n---------------------------------------------------\n");
             
             //______________Empieza el switch, menu______________________________________________________
             switch (val) {
                 case "O":
-                    System.out.println("Se presentara un menu de Operador");
+                    System.out.println("---------------- Menu de Operador ---------------- \n");
                     
                     System.out.println("1.   Registrar pagos: ");//añadido
                     System.out.println("2.   Consultar multas clientes: ");//añadido
                     System.out.println("3.   Consultar usuarios: ");//añadido 
+                    System.out.println(" Ingrese el numero de la opcion que desee: ");
                     String eleccionO = sc.nextLine();
                     switch(eleccionO){
                         case "1":
@@ -70,10 +71,12 @@ Operador op = new Operador(0, null, null,0, null,usua1, contra1, null,0);//agreg
 
                     
                 case "E":
-                    System.out.println("Se presentara un menu de Cliente pero este es Estrella");
+                    System.out.println("---------------- Menu de Cliente Estrella ----------------\n ");
                     
                     System.out.println("1.   Consultar multas: ");//añadido
                     System.out.println("2.   Agendar revision: ");//añadido 
+                                        System.out.println(" Ingrese el numero de la opcion que desee: ");
+
                     String eleccionCE = sc.nextLine();
                     switch(eleccionCE){
                         case "1":
@@ -86,11 +89,13 @@ Operador op = new Operador(0, null, null,0, null,usua1, contra1, null,0);//agreg
                     break;
                     
                 case "S":
-                    System.out.println("Se presentara un menu de Cliente Standar");
+                    System.out.println("---------------- Menu de Cliente Estandar ----------------\n ");
                     
                     
                     System.out.println("1.   Consultar multas: ");//añadido
                     System.out.println("2.   Agendar revision: ");//añadido 
+                                        System.out.println(" Ingrese el numero de la opcion que desee: ");
+
                     String eleccionCS = sc.nextLine();
                     switch(eleccionCS){
                         case "1":
@@ -105,7 +110,7 @@ Operador op = new Operador(0, null, null,0, null,usua1, contra1, null,0);//agreg
             }//termina switch de eleccion de metodos de cliente
             
         } else {
-            System.out.println("valio queso");
+            System.out.println("El usuario o contraseña ingresados son incorrectos.");
         }
             
     }// termina switch general q muestra el menu
