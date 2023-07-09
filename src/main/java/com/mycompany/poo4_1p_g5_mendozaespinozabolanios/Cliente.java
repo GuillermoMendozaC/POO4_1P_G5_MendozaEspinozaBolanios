@@ -7,7 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,15 +16,29 @@ import java.util.Random;
  */
 /**
  *
- * @author User
+ * @author Guillermo Mendoza
  */
 public class Cliente extends Usuario {
 
     private String Num_Tarjeta; //No cambiar a int da error al leer el archivo
     private int Puntos_lic;
     private Vehiculo vehiculo;
-    private String usua = "1203864463"; //Variable de ejemplo
     static ArrayList<Cliente> clientes;
+    
+    /**
+     * Constructor de cliente
+     * @param cedula de cliente
+     * @param nombre de cliente
+     * @param apellidos de cliente
+     * @param edad del cliente
+     * @param correo del cliente
+     * @param usuario del cliente
+     * @param contrasenia del cliente
+     * @param perfil del cliente
+     * @param Num_Tarjeta del cliente
+     * @param Puntos_lic del cliente
+     * @param vehiculo del cliente
+     */
     public Cliente(int cedula, String nombre, String apellidos, int edad, String correo, String usuario, String contrasenia, TipoUsuario perfil, String Num_Tarjeta, int Puntos_lic, Vehiculo vehiculo){
         super(cedula,nombre,apellidos,edad,correo,usuario,contrasenia,perfil);
         this.Num_Tarjeta=Num_Tarjeta;
@@ -31,7 +46,7 @@ public class Cliente extends Usuario {
         this.vehiculo=vehiculo;
     }
     
-    
+    //GETTERS Y SETTERS
     public String getNum_Tarjeta() {
         return Num_Tarjeta;
     }
@@ -59,30 +74,27 @@ public class Cliente extends Usuario {
     //CONSULTAR MULTAS
     @Override
     public void consultarmultas(){
-        ArrayList<Multa> multas = PLATAFORMA.multas;
+        ArrayList<Multa> multas = PLATAFORMA.multas; //Llama la lista de multas cargadas en la plataforma
         double saldoPagar=0;
-        Scanner sc=new Scanner(System.in);
+        Scanner sc=new Scanner(System.in); 
         System.out.println("Ingrese su cedula o la placa de su vehiculo (si su cedula inicia con 0 omitalo): ");
         String s = sc.nextLine().trim();
-        Multa n=null;
+        Multa n=null;//Crea una multa vacia para luego almacenar la multa que se usará para la comparación en el ArrayList de multa
+        
         if(s.equals(String.valueOf(this.getCedula()))){
-            Vehiculo v =new Vehiculo(Integer.parseInt(s),"f",null,null,0,null,null);
-            Cliente c = new Cliente(Integer.parseInt(s),null,null,0,null,null,null,null,null,0,v);
-            n= new Multa(c,v,"d",0.0,null,null,0); 
+            n= new Multa(this,this.getVehiculo(),"d",0.0,null,null,0); //Caso de que el cliente ingrese cedula
         }
         else if(s.equals(this.getVehiculo().getPlaca())){
-            Vehiculo v = new Vehiculo(0,s,null,null,0,null,null);
-            Cliente c = new Cliente(0,null,null,0,null,null,null,null,null,0,null);
-            n = new Multa(c,v,null,0.0,null,null,0);
+            n = new Multa(this,this.getVehiculo(),null,0.0,null,null,0);//Caso de que el cliente ingrese placa
         }
         else if(!s.equals(String.valueOf(this.getCedula()))&&!s.equals(this.getVehiculo().getPlaca())){
-            System.out.println("La cedula o la placa es incorrecta");
+            System.out.println("La cedula o la placa es incorrecta"); //Validacion de que la placa o la cedula sean escritas correctamente
         }
        
         if (!multas.contains(n)){
             System.out.println("Usted no tiene multas");
         }
-        else{
+        else{ //Muestra las multas del cliente
             System.out.println("----------------------DETALLE DE MULTAS-----------------------");
             System.out.println("CEDULA | MATRICULA  |  INFRACCION  |  VALOR A PAGAR  |  FECHA DE INFRACCION  |  FECHA DE NOTIFICACION  |  PUNTOS ");
             for(Multa m: multas){
@@ -99,42 +111,45 @@ public class Cliente extends Usuario {
     
     //AGENDAR REVISION
     public void agendarRevision(){
-        ArrayList<String> fechas=PLATAFORMA.fechas;
-        ArrayList<Multa> multas=PLATAFORMA.multas;
-        Random r = new Random();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-YYYY");
+        ArrayList<Date> fechas=PLATAFORMA.fechas;//Llama la lista de fechas cargadas en la plataforma
+        ArrayList<Multa> multas=PLATAFORMA.multas;//Llama la lista de multas cargadas en la plataforma
+        Random r = new Random(); //Se utilizará para el código de la revisión
         Scanner sc = new Scanner(System.in);
-        int horario=0;
-        int cont=1;
-        double base = 150.0;
+        int horario=0; //Almacena el horario elegido por el cliente
+        int cont=1;//Se usa para mostrar los horarios disponibles
+        double base = 150.0;//Precio base de unaa revisión
         double valor_P=0;
-        System.out.println("Ingrese placa: ");
+        System.out.println("Ingrese placa: "); //Pide placa al cliente
         String placa= sc.nextLine();
-        if(placa.equals(this.getVehiculo().getPlaca())){
+        if(placa.equals(this.getVehiculo().getPlaca())){//Valida que la placa sea escrita correctamente
             Multa n = new Multa(this,this.getVehiculo(),"",0.0,"","",0);
             if(!multas.contains(n)){
+                
                 System.out.println("Usted no tiene multas");
                 System.out.println("---- HORARIOS DISPONIBLES----");
-                for(String F : fechas){
-                    System.out.println(cont + ". "+F);
-                    cont++;
+                for(Date F : fechas){
+                    System.out.println(cont + ". "+sdf.format(F)+" " + F.getHours() + ":"+F.getMinutes());
+                    cont++;//Muestra los horarios disponibles
                 }
                 System.out.println("Escoga horario: ");
                 horario=sc.nextInt();
-                if(this.getPerfil().equals(TipoUsuario.E)){
+                if(this.getPerfil().equals(TipoUsuario.E)){//Verifica que el el perfil del cliente sea Estrella para aplicar el descuento
                     valor_P= base*0.8;
                 }
                 else{
-                    valor_P=base+((30-this.Puntos_lic)*10);
+                    valor_P=base+((30-this.Puntos_lic)*10);//Opcion cliente estandar
                     
                 }
-            System.out.println(this.getNombre()+" "+this.getApellido()+"se ha agendado su cita para el "+fechas.get(horario-1).split(" ")[0]+"a las " + fechas.get(horario-1).split(" ")[1]+
+            System.out.println(this.getNombre()+" "+this.getApellido()+"se ha agendado su cita para el "
+                    +sdf.format(fechas.get(horario-1))+" a las " + fechas.get(horario-1).getHours()+":"+fechas.get(horario-1).getMinutes()+
                     "\nValor a pagar: "+valor_P);
             System.out.println("Puede pagar su cita hasta 24 horas antes de la cita.\nDe lo contrario la cita se cancelara");
            
-            int cita_Code= r.nextInt(1000, 10000);
+            int cita_Code= r.nextInt(1000, 10000); //Genera codigo de la cita
             
-            ManejoArchivos.EscribirArchivo("AgendaRevisiones.txt",cita_Code + "," + this.getCedula()+","+placa+","+fechas.get(horario-1).split(" ")[0]);
-            fechas.remove(horario-1);
+            ManejoArchivos.EscribirArchivo("AgendaRevisiones.txt",cita_Code + "," + this.getCedula()+","+placa+","+sdf.format(fechas.get(horario-1)));
+            fechas.remove(horario-1); //Remueve el horario escogido por el cliente de la lista de fechas
             }
             
         
@@ -144,17 +159,15 @@ public class Cliente extends Usuario {
         }
     }
     
-    
-    
-    
-    
-
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------
     @Override
-        public String toString(){//Prueba para verificar que la lista de clientes contiene la informacion correcta
-            return "Edad: " + this.getEdad();
-        }
+    public String toString(){
+        return this.getNombre()+" "+this.getApellido()+" | "+this.getCedula()+" | "+this.getNum_Tarjeta()+" | "+this.getPerfil()+" | "+this.getVehiculo().getPlaca();
+    }
+    
 }
+    
+    
+    
+  
 
   
