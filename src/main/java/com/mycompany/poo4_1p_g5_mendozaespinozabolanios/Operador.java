@@ -78,10 +78,10 @@ public class Operador extends Usuario {
                 if (val2.getCedula() == usuario.getCedula()) {
                     String usua = val2.getUsuario();
                     String contra = val2.getContrasenia();
-                    String validacion = val2.validarUsuario(usua, contra);
+                    Usuario validacion = .validarUsuario(usua, contra);
                     // Se imprime la información del cliente según su tipo (estándar o estrella)
 
-                    if (validacion.equals("S")) {
+                    if (validacion.getPerfil().equals("S")) {
                         System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRANDAR" + "  |  " + val2.getCedula());
                     } else {
                         System.out.println(val2.getApellido() + " " + val2.getNombre() + "  |  " + "CLIENTE ESTRELLA" + "  |  " + val2.getCedula());
@@ -124,6 +124,8 @@ public class Operador extends Usuario {
             if (op1 == 1) {
 
                 ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Multas");
+                
+                
             } else {
                 ManejoArchivos.EscribirArchivo("Pago.txt", codigo + "," + ced + "," + valor + "," + "E" + "," + valor + "," + today + "," + "Revision");
 

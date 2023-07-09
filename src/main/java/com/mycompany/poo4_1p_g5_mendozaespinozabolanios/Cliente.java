@@ -149,32 +149,7 @@ public class Cliente extends Usuario {
     
     
 
-    public String validarUsuario(String usuario, String contrasena) {
-    ArrayList<String> linea = ManejoArchivos.LeeFichero("usuarios.txt");
-    ArrayList<String> usuarios = new ArrayList<>();
-    ArrayList<String> contraseñas = new ArrayList<>();
-     ArrayList<String> tiposdeusua = new ArrayList<>();
 
-
-    for (String cadena : linea) {
-        String[] parte = cadena.split(",");
-        String usua = parte[4];
-        String contra = parte[5];
-        String tipousua = parte[6];
-        usuarios.add(usua);
-        contraseñas.add(contra);
-        tiposdeusua.add(tipousua);
-                
-    }
-
-    for (int i = 0; i < usuarios.size(); i++) {
-        if (usuarios.get(i).equals(usuario) && contraseñas.get(i).equals(contrasena)) {
-            String tip = tiposdeusua.get(i);
-            return tip;
-        }
-    }
-    return null;
-}
     //----------------------------------------------------------------------------------------------------------------------------------------------
     @Override
         public String toString(){//Prueba para verificar que la lista de clientes contiene la informacion correcta
