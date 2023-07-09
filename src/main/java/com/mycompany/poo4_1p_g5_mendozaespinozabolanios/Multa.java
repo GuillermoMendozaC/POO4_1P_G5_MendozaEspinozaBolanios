@@ -11,6 +11,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+/**
+ * 
+ * @author Tomas Bolaños
+ */
 
 public class Multa {
     private Cliente cliente;
@@ -22,7 +26,16 @@ public class Multa {
     private int puntos;
     static ArrayList<Multa> multas;
 
-    
+    /**
+     * 
+     * @param cliente usuario de tipo cliente estrella o estandar
+     * @param vehiculo perteneciente al cliente
+     * @param infraccion descripcion de la multa
+     * @param valorMulta valor a pegar
+     * @param fechaInfraccion fecha de cuando se cometio la infracción
+     * @param fechaNotificacion fecha en la que se notificó al cliente sobre la infracción
+     * @param puntos puntos que se restan a la licencia
+     */
     public  Multa(Cliente cliente, Vehiculo vehiculo, String infraccion,double valorMulta,
     String fechaInfraccion, String fechaNotificacion,int puntos){
         this.cliente = cliente;
@@ -33,7 +46,7 @@ public class Multa {
         this.fechaNotificacion = fechaNotificacion;
         this.puntos = puntos;
     }
-
+    //GETTERS Y SETTERS
     public Cliente getCliente() {
         return cliente;
     }
@@ -107,6 +120,12 @@ public class Multa {
         
         return false;
         }
+    /**
+     * 
+     * @param multas ArrayList de multas
+     * Carga la informacion del archivo de multas
+     * @return 
+     */
     static ArrayList<Multa> cargarMultas(ArrayList<Multa> multas){
         ArrayList<String> datos=ManejoArchivos.LeeFichero("multas.txt");
         for(String line:datos){
@@ -115,22 +134,23 @@ public class Multa {
             Cliente c = null;
             for(Vehiculo a:vehiculos){
                 if (a.getDueño()==Integer.parseInt(elem[0])){
-                    v=a;
+                    v=a; //Extrae el vehiculo con la cedula encontrada en el archivo de multas
                 }
             }
             for(Cliente p:clientes){
                 if (p.getCedula()==Integer.parseInt(elem[0])){
-                    c=p;
+                    c=p; //Extrae el cliente con la cedula encontrada en el archivo de multas
                 }
             }
             Multa m = new Multa(c,v,elem[2],Double.parseDouble(elem[3]),elem[4],elem[5],Integer.parseInt(elem[6]));
             
-            multas.add(m);
+            multas.add(m); //Añade la multa a las listas de multas
         }
         return multas;
     }
-        public String toString(){//Prueba para verificar que la lista de multas contiene la informacion correcta
-            return this.infraccion;
+        @Override
+        public String toString(){
+            return this.getCliente().getCedula()+" | "+this.getInfraccion()+" | "+this.getValorMulta()+" | "+this.getPuntos();
         }
         
             
