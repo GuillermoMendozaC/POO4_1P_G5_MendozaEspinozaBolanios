@@ -10,13 +10,13 @@ import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Date;
 /**
  *
  * @author Lenovo
  */
 public class PLATAFORMA {
-
+    static ArrayList<String> fechas;
     static ArrayList<Multa> multas;
     static ArrayList<Cliente> clientes;
     static ArrayList<Vehiculo> vehiculos;
@@ -28,6 +28,13 @@ public class PLATAFORMA {
         vehiculos = new ArrayList<>();
         operadores = new ArrayList<>();
         usuarios = new ArrayList<>();
+        fechas = new ArrayList<>();
+        String[] fecha = {"09-07-2023 9:00","09-07-2023 9:30","09-07-2023 10:00",
+            "09-07-2023 10:30","09-07-2023 11:00","09-07-2023 11:30","09-07-2023 12:00"};
+        for(String F:fecha){
+            fechas.add(F);
+        }
+        
 //        List<Usuario> usuarios = new ArrayList<>();
         //CARGA DE LA INFORMACION DE LOS ARCHIVOS
         vehiculos = Vehiculo.cargarVehiculo(vehiculos);
@@ -35,12 +42,13 @@ public class PLATAFORMA {
         multas = Multa.cargarMultas(multas);
 
         //PRUEBA CONSULTAR MULTA
-        Cliente p = clientes.get(0);
-//        p.consultarmultas();
+        Cliente p = clientes.get(1);
+        System.out.println(p.getVehiculo().getPlaca());
+        p.agendarRevision();
         Operador op = operadores.get(2);
 //        op.consultarmultas();
         //op.consultarUsuarios(usuarios);
-        op.registrarPagos();
+        //op.registrarPagos();
 
     }
 

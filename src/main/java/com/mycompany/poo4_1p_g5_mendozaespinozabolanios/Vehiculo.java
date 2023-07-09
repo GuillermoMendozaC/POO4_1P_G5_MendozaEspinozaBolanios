@@ -99,7 +99,7 @@ public class Vehiculo {
             return false;
         }
         Vehiculo otro=(Vehiculo)obj;
-        if(this.getPlaca().equals(otro.getPlaca())){
+        if(!this.getPlaca().equals(otro.getPlaca())){
             return false;
         }
         

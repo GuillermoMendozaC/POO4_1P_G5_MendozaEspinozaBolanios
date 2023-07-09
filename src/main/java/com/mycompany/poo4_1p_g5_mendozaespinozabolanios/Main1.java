@@ -22,6 +22,7 @@ public class Main1 {
     public static void main(String[] args) {
         ArrayList<Cliente> c = PLATAFORMA.clientes;
         
+        
         /* Lo comento porque cliente tiene constructor ahora por lo que va a dar 
         error si se prueba en este momento
         

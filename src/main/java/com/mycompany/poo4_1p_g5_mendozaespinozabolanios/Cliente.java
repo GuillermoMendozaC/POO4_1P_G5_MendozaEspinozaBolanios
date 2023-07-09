@@ -6,8 +6,9 @@ import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Random;
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -98,23 +99,45 @@ public class Cliente extends Usuario {
     
     //AGENDAR REVISION
     public void agendarRevision(){
+        ArrayList<String> fechas=PLATAFORMA.fechas;
         ArrayList<Multa> multas=PLATAFORMA.multas;
+        Random r = new Random();
+        Scanner sc = new Scanner(System.in);
+        int horario=0;
+        int cont=1;
         double base = 150.0;
-        Scanner sc=new Scanner(System.in);
+        double valor_P=0;
         System.out.println("Ingrese placa: ");
-        String placa= sc.nextLine().trim();
+        String placa= sc.nextLine();
         if(placa.equals(this.getVehiculo().getPlaca())){
             Multa n = new Multa(this,this.getVehiculo(),"",0.0,"","",0);
             if(!multas.contains(n)){
                 System.out.println("Usted no tiene multas");
+                System.out.println("---- HORARIOS DISPONIBLES----");
+                for(String F : fechas){
+                    System.out.println(cont + ". "+F);
+                    cont++;
+                }
+                System.out.println("Escoga horario: ");
+                horario=sc.nextInt();
                 if(this.getPerfil().equals(TipoUsuario.E)){
-                    LocalDate fecha= LocalDate.now();
-                    LocalDateTime hora= LocalDateTime.now();
+                    valor_P= base*0.8;
                 }
                 else{
-                    //COBRAR CIFRA NORMAL
+                    valor_P=base+((30-this.Puntos_lic)*10);
+                    
                 }
+            System.out.println(this.getNombre()+" "+this.getApellido()+"se ha agendado su cita para el "+fechas.get(horario-1).split(" ")[0]+
+                    "\nValor a pagar: "+valor_P);
+            System.out.println("Puede pagar su cita hasta 24 horas antes de la cita.\nDe lo contrario la cita se cancelara");
+           
+            int cita_Code= r.nextInt(1000, 10000);
+            
+            ManejoArchivos.EscribirArchivo("AgendaRevisiones.txt",cita_Code + "," + this.getCedula()+","+placa+","+fechas.get(horario-1).split(" ")[0]);
+            fechas.remove(horario-1);
             }
+            
+        
             else{
                 System.out.println("Usted tiene multas no puede agendar citas");
             }
