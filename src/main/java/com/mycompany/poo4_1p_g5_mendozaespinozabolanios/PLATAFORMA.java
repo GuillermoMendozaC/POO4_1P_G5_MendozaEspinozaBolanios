@@ -17,7 +17,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *  Clase principal en la que se ejecuta el programa
+ * Clase principal en la que se ejecuta el programa
+ *
  * @author Grupo 5
  */
 public class PLATAFORMA {
@@ -28,8 +29,10 @@ public class PLATAFORMA {
     static ArrayList<Vehiculo> vehiculos;
     static ArrayList<Operador> operadores;
     static ArrayList<Usuario> usuarios;
+
     /**
      * Main
+     *
      * @param args main
      */
     public static void main(String[] args) {
@@ -44,8 +47,7 @@ public class PLATAFORMA {
         generarFechas();
         vehiculos = Vehiculo.cargarVehiculo(vehiculos);
         cargarUsuario();
-        multas = Multa.cargarMultas(multas);    
-        
+        multas = Multa.cargarMultas(multas);
 
         //SE EJECUTA EL PROGRAMA
         System.out.println("-----------------------------------------------\n\n            BIENVENIDO AL SISTEMA \n\n-----------------------------------------------");
@@ -57,90 +59,82 @@ public class PLATAFORMA {
         System.out.print("CONTRASEÑA : ");
         String contra1 = sc.nextLine();
         Cliente cli = new Cliente(0, null, null, 0, null, usua1, contra1, null, null, 0, null);//Se crea variable cliente para almacenar al objeto cliente en caso de que lo sea.
-         Operador op = new Operador(0, null, null, 0, null, usua1, contra1, null, 0);//Se crea variable operador para almacenar al objeto operador en caso de que lo sea.
+        Operador op = new Operador(0, null, null, 0, null, usua1, contra1, null, 0);//Se crea variable operador para almacenar al objeto operador en caso de que lo sea.
 
         System.out.println("---------------------------------------------------");
         Usuario u = validarUsuario(usua1, contra1); //El metodo retorna un usuario
         TipoUsuario val = null;
         //VALIDACION SI "u" ES OPERADOR O CLIENTE
-        if (u instanceof Cliente){
+        if (u instanceof Cliente) {
             cli = (Cliente) u;
             val = cli.getPerfil();
+        } else if (u instanceof Operador) {
+            op = (Operador) u;
+            val = op.getPerfil();
         }
-        else if( u instanceof Operador){
-        op = (Operador) u;
-        val  = op.getPerfil();
-    }
         //VALIDACION DE QUE EL USUARIO Y LA CONTRASENIA SEAN CORRECTOS
         if (val != null) {
             System.out.println("             Ingreso de sesión exitoso\n---------------------------------------------------\n");
-            
-            //Empieza el switch, menu
 
+            //Empieza el switch, menu
             switch (val) {
                 case O: //Caso operador
-                    int eleccionO=0;
-                    while(eleccionO!=4){
-                    System.out.println("---------------- Menu de Operador ---------------- \n");
+                    int eleccionO = 0;
+                    while (eleccionO != 4) {
+                        System.out.println("---------------- Menu de Operador ---------------- \n");
 
-                    System.out.println("1.   Registrar pagos: ");
-                    System.out.println("2.   Consultar multas clientes: ");
-                    System.out.println("3.   Consultar usuarios: "); 
-                    System.out.println("4.   Salir");
-                    System.out.println(" Ingrese el numero de la opcion que desee: ");
-                    eleccionO = sc.nextInt();
-                    switch (eleccionO) {
-                        case 1:
-                            op.registrarPagos();
-                            break;
-                        case 2:
-                            op.consultarmultas();
-                            break;
-                        case 3:
-                            op.consultarUsuarios(usuarios);
-                            break;
-                    }
+                        System.out.println("1.   Registrar pagos: ");
+                        System.out.println("2.   Consultar multas clientes: ");
+                        System.out.println("3.   Consultar usuarios: ");
+                        System.out.println("4.   Salir");
+                        System.out.println(" Ingrese el numero de la opcion que desee: ");
+                        eleccionO = sc.nextInt();
+                        switch (eleccionO) {
+                            case 1:
+                                op.registrarPagos();
+                                break;
+                            case 2:
+                                op.consultarmultas();
+                                break;
+                            case 3:
+                                op.consultarUsuarios(usuarios);
+                                break;
+                        }
                     }
                     break; //Culmina caso operador
-                    
+
                 default://Caso cliente estandar o estrella
                     System.out.println("---------------- Menu de Cliente  ----------------\n ");
-                    int eleccionCS=0;
-                    while(eleccionCS!=3){
-                    System.out.println("1.   Consultar multas: ");
-                    System.out.println("2.   Agendar revision: "); 
-                    System.out.println("3.   Salir ");
-                    System.out.println(" Ingrese el numero de la opcion que desee: ");
-                     eleccionCS = sc.nextInt();
-                    switch (eleccionCS) {
-                        case 1:
-                            cli.consultarmultas();
+                    int eleccionCS = 0;
+                    while (eleccionCS != 3) {
+                        System.out.println("1.   Consultar multas: ");
+                        System.out.println("2.   Agendar revision: ");
+                        System.out.println("3.   Salir ");
+                        System.out.println(" Ingrese el numero de la opcion que desee: ");
+                        eleccionCS = sc.nextInt();
+                        switch (eleccionCS) {
+                            case 1:
+                                cli.consultarmultas();
 
-                            break;
-                        case 2:
-                            cli.agendarRevision();
-                            break;
+                                break;
+                            case 2:
+                                cli.agendarRevision();
+                                break;
+                        }
+
                     }
-
-                   
+                    break;//Culmina caso de clientes
             }
-             break;//Culmina caso de clientes
-        }
-        }
-        else {
+        } else {
             System.out.println("El usuario o contraseña ingresados son incorrectos.");
         }
 
     }//Culmina la muestra del menu
 
-    
-    
-    
-    
     /**
      * Se carga la informacion de los archivos usuarios, clientes, y operadores
      */
-     public static void cargarUsuario() {
+    public static void cargarUsuario() {
         ArrayList<String> datos = ManejoArchivos.LeeFichero("usuarios.txt");
         ArrayList<String> datos2 = ManejoArchivos.LeeFichero("clientes.txt");
         ArrayList<String> datos3 = ManejoArchivos.LeeFichero("operadores.txt");
@@ -191,15 +185,15 @@ public class PLATAFORMA {
         }
 
     }
-    
-     /**
-      * 
-      * @param usuario ingresado por la persona que usa el sistema
-      * @param contrasena ingresada por la persona que usa el sistema
-      * @return Usuario o null
-      */
-    public static Usuario  validarUsuario(String usuario, String contrasena) {
-        for (Usuario u: usuarios) {
+
+    /**
+     *
+     * @param usuario ingresado por la persona que usa el sistema
+     * @param contrasena ingresada por la persona que usa el sistema
+     * @return Usuario o null
+     */
+    public static Usuario validarUsuario(String usuario, String contrasena) {
+        for (Usuario u : usuarios) {
             if (u.getContrasenia().equals(contrasena) && u.getUsuario().equals(usuario)) {
                 return u;
             }
@@ -207,12 +201,13 @@ public class PLATAFORMA {
 
         return null;
     }
+
     /**
      * Genera fechas para las revisiones
      */
-    public static void generarFechas(){
-        for(int i=0;i<=240;i+=30){
-            Date f=new Date(123,5,7,9,i,0);
+    public static void generarFechas() {
+        for (int i = 0; i <= 240; i += 30) {
+            Date f = new Date(123, 5, 7, 9, i, 0);
             fechas.add(f);
         }
     }

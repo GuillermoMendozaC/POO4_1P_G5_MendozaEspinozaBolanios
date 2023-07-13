@@ -5,6 +5,7 @@
 package com.mycompany.poo4_1p_g5_mendozaespinozabolanios;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,15 +37,19 @@ public class Operador extends Usuario {
         this.sueldo = sueldo;
     }
 //GETTERS Y SETTERS 
+
     /**
      * Obtiene el sueldo del operador
+     *
      * @return el sueldo del operador
      */
     public int getSueldo() {
         return sueldo;
     }
+
     /**
      * Establece un sueldo para el operador
+     *
      * @param sueldo Establece un nuevo sueldo para el operador
      */
     public void setSueldo(int sueldo) {
@@ -63,9 +68,17 @@ public class Operador extends Usuario {
 
         System.out.println("----------------------------------------------------CONSULTAR MULTAS-------------------------------------------");
         //Se pide al usuario el mes a utilizar
-        System.out.print("Ingrese un mes: ");
+        System.out.print("Ingrese un mes (Primera letra en mayuscula) : ");
         Scanner sc = new Scanner(System.in);
         String mes1 = sc.nextLine();
+        boolean val = Arrays.asList(meses).contains(mes1);
+        while (val == false) {
+            System.out.println("La palabra que ingreso no es un mes, porfavor ingrese denuevo: ");
+            String mes2 = sc.nextLine();
+            boolean val2 = Arrays.asList(meses).contains(mes2);
+            val = val2;
+
+        }
         System.out.println(" ----------------------------------------Conductores multados----------------------------------------");
         System.out.println("CEDULA | MATRICULA  |  INFRACCION  |  VALOR A PAGAR  |  FECHA DE INFRACCION  |  FECHA DE NOTIFICACION  |  PUNTOS ");
 
@@ -133,10 +146,33 @@ public class Operador extends Usuario {
      * "Pago.txt"
      */
     public void registrarPagos() {
+        ArrayList<Cliente> clientes = PLATAFORMA.clientes;
+        Cliente clencontrado = null;
         Scanner sc = new Scanner(System.in);
         //Se pide al usuario toda la informacion a necesitar 
         System.out.println("Ingrese numero de cedula del cliente: ");
         String ced = sc.nextLine();
+        int cedint;
+        int cedint2 = Integer.parseInt(ced);
+        //Validacion por si el usuario ingresa una cedula incorrecta
+        boolean veri = false;
+        while (veri == false) {
+            for (Cliente cli : clientes) {
+                if (cli.getCedula() == cedint2) {
+                    clencontrado = cli;
+                    veri = true;
+                }
+            }
+            if (veri == false) {
+                System.out.println("La cedula que ingreso no esta registrada, porfavor ingrese una cedula valida:  ");
+                String ced2 = sc.nextLine();
+                int cedint3 = Integer.parseInt(ced2);
+                cedint2 = cedint3;
+
+            }
+
+        }
+
         System.out.println("QUE DESEA PAGAR?\n1. Multas \n2. Revision  \nElija una opcion: ");
         int op1 = sc.nextInt();
         sc.nextLine();
@@ -153,38 +189,39 @@ public class Operador extends Usuario {
         //Genera un código basado en los primeros y últimos dos dígitos de la cédula
         String codigo = ced.substring(0, 2) + ced.substring(ced.length() - 2);
         // Se guarda la informacion del pago en el archivo txt y se valida dependiendo  su metodo o razon de pago 
-        ArrayList<Cliente> clientes = PLATAFORMA.clientes;
-        int cedint = Integer.parseInt(ced);
         //Se recorre la lista de Clientes para obtener el cliente al que le pertenece la cedula ingresada
-        Cliente clencontrado = null;
-        for (Cliente cli : clientes) {
-            if (cli.getCedula() == cedint) {
-                clencontrado = cli;
-            }
-        }
+
+        //-------------------------
+//        for (Cliente cli : clientes) {
+//            if (cli.getCedula() == cedint) {
+//                clencontrado = cli;
+//            }
+//        }
+        //-----------------
         //Se valida para cada caso de registro de texto 
         if (op2 == 1) {
             if (op1 == 1) {
 
-            Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.E,valor,"Multa");
-                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+"," +today+","+pa.getRazonpago());
-
+                Pago pa = new Pago(codigo, clencontrado, valor, TipoPago.E, valor, "Multa");
+                ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago() + "," + pa.getCliente().getCedula() + "," + pa.getValorpagar() + "," + pa.getMetodopago() + "," + pa.getValorpagar() + "," + today + "," + pa.getRazonpago());
+                System.out.println("Se registro con exito su pago");
 
             } else {
-                            Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.E,valor,"Revision");
-                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
-
+                Pago pa = new Pago(codigo, clencontrado, valor, TipoPago.E, valor, "Revision");
+                ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago() + "," + pa.getCliente().getCedula() + "," + pa.getValorpagar() + "," + pa.getMetodopago() + "," + pa.getValorpagar() + "," + today + "," + pa.getRazonpago());
+                System.out.println("Se registro con exito su pago");
 
             }
         } else {
             if (op1 == 1) {
-                Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.T,adiciontc,"Multa");
-                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
-
+                Pago pa = new Pago(codigo, clencontrado, valor, TipoPago.T, adiciontc, "Multa");
+                ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago() + "," + pa.getCliente().getCedula() + "," + pa.getValorpagar() + "," + pa.getMetodopago() + "," + pa.getValorpagar() + "," + today + "," + pa.getRazonpago());
+                System.out.println("Se registro con exito su pago");
 
             } else {
-                 Pago pa = new Pago(codigo,clencontrado,valor,TipoPago.T,adiciontc,"Revision");
-                            ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago()+"," +pa.getCliente().getCedula()+"," +pa.getValorpagar()+"," +pa.getMetodopago()+"," +pa.getValorpagar()+","+today+"," +pa.getRazonpago());
+                Pago pa = new Pago(codigo, clencontrado, valor, TipoPago.T, adiciontc, "Revision");
+                ManejoArchivos.EscribirArchivo("Pago.txt", pa.getCodigopago() + "," + pa.getCliente().getCedula() + "," + pa.getValorpagar() + "," + pa.getMetodopago() + "," + pa.getValorpagar() + "," + today + "," + pa.getRazonpago());
+                System.out.println("Se registro con exito su pago");
 
             }
         }

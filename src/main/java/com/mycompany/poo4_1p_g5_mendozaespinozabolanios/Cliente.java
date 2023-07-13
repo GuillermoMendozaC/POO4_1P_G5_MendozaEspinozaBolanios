@@ -181,6 +181,8 @@ public class Cliente extends Usuario {
             else{
                 System.out.println("Usted tiene multas no puede agendar citas");
             }
+        }else{
+            System.out.println("La placa ingresada no existe");
         }
     }
     
